@@ -1,0 +1,83 @@
+name: Site
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+  schedule:
+    # Weekly link check, Mondays 14:17 UTC, to catch links that break over time.
+    - cron: "17 14 * * 1"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: site-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  html:
+    name: HTML validity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - name: html-validate (spec and accessibility rules)
+        run: npx --yes html-validate@9.7.1 index.html 404.html
+      - name: W3C Nu HTML Checker
+        run: |
+          npm install --no-save vnu-jar@24.10.17
+          java -jar node_modules/vnu-jar/build/dist/vnu.jar --errors-only index.html 404.html
+      - name: No em dashes
+        run: |
+          if LC_ALL=C.UTF-8 grep -rnP --exclude-dir=.git --exclude-dir=node_modules '\x{2014}' .; then
+            echo "Em dash found. Use a comma, colon, or 'to' instead."
+            exit 1
+          fi
+      - name: Local assets exist
+        run: test -f og-image.png && test -f favicon.svg
+
+  links:
+    name: Broken links
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: lycheeverse/lychee-action@v2
+        with:
+          args: --config lychee.toml --no-progress index.html 404.html
+          fail: true
+          jobSummary: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy:
+    name: Deploy to GitHub Pages
+    needs: [html, links]
+    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Collect site files
+        run: |
+          mkdir _site
+          cp index.html 404.html styles.css script.js favicon.svg og-image.png robots.txt sitemap.xml _site/
+          if [ -f resume.pdf ]; then cp resume.pdf _site/; fi
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4
