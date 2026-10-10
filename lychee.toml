@@ -10,8 +10,6 @@ accept = ["200..=299", "429"]
 exclude = [
   # LinkedIn blocks automated requests (HTTP 999), so it cannot be checked from CI.
   '^https://www\.linkedin\.com/',
-  # Placeholder until resume.pdf is uploaded. Remove this line after adding the file.
-  'resume\.pdf$',
   # Social preview image is checked locally as og-image.png; the live URL exists only after deploy.
   '^https://kadaru242003\.github\.io/',
 ]
