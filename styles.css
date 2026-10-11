@@ -622,3 +622,25 @@ ul {
   font-size: 1.0625rem;
   font-weight: 600;
 }
+
+/* Education entry with a photo: stacked on mobile, side by side on wider screens */
+.entry-media {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.entry-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+
+@media (min-width: 640px) {
+  .entry-media {
+    grid-template-columns: 240px 1fr;
+    gap: 1.25rem;
+    align-items: start;
+  }
+}
