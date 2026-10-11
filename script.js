@@ -107,8 +107,8 @@
 })();
 
 // Highlight the nav link for the section currently in view (home page).
+// The current section is the last one whose top has passed 40% of the viewport.
 (function () {
-  if (!("IntersectionObserver" in window)) return;
   var links = {};
   Array.prototype.forEach.call(document.querySelectorAll('.nav-links a[href^="#"]'), function (a) {
     links[a.getAttribute("href").slice(1)] = a;
@@ -116,22 +116,34 @@
   var sections = Object.keys(links).map(function (id) { return document.getElementById(id); }).filter(Boolean);
   if (!sections.length) return;
 
-  function setCurrent(id) {
+  var current = null;
+  var ticking = false;
+
+  function update() {
+    ticking = false;
+    var line = window.innerHeight * 0.4;
+    var id = null;
+    sections.forEach(function (s) {
+      if (s.getBoundingClientRect().top <= line) id = s.id;
+    });
+    // At the very bottom, the last section is current even if it is short.
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+      id = sections[sections.length - 1].id;
+    }
+    if (id === current) return;
+    current = id;
     Object.keys(links).forEach(function (key) {
       if (key === id) links[key].setAttribute("aria-current", "true");
       else links[key].removeAttribute("aria-current");
     });
   }
 
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (entry.isIntersecting) setCurrent(entry.target.id);
-    });
-  }, { rootMargin: "-40% 0px -55% 0px" });
-  sections.forEach(function (s) { io.observe(s); });
-
-  // Above the first section, nothing is current.
   window.addEventListener("scroll", function () {
-    if (window.scrollY < sections[0].offsetTop - window.innerHeight * 0.4) setCurrent(null);
+    if (!ticking) {
+      ticking = true;
+      window.requestAnimationFrame(update);
+    }
   }, { passive: true });
+  window.addEventListener("resize", update);
+  update();
 })();
