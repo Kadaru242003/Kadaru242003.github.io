@@ -7,8 +7,8 @@
   <meta name="description" content="Weekly sales forecasts for 3,049 Walmart (M5) items in one store, with leakage-tested backtests.">
   <meta name="author" content="Harshith Kadaru">
   <link rel="canonical" href="https://kadaru242003.github.io/projects/demand-forecasting-backtest.html">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0f1419" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1113" media="(prefers-color-scheme: dark)">
   <meta name="color-scheme" content="light dark">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://kadaru242003.github.io/projects/demand-forecasting-backtest.html">
@@ -17,8 +17,11 @@
   <meta property="og:image" content="https://kadaru242003.github.io/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/fraunces-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/styles.css">
   <script>
+    document.documentElement.classList.add("js");
     try {
       var t = localStorage.getItem("theme");
       if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
@@ -33,7 +36,7 @@
       <a class="brand" href="/">Harshith Kadaru</a>
       <ul class="nav-links">
         <li><a href="/#experience">Experience</a></li>
-        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/#projects" aria-current="page">Projects</a></li>
         <li><a href="/#education">Education</a></li>
         <li><a href="/#skills">Skills</a></li>
         <li><a href="/#contact">Contact</a></li>
@@ -55,14 +58,16 @@
         <p class="card-links">
           <a href="https://github.com/Kadaru242003/demand-forecasting-backtest">GitHub<span class="visually-hidden">: Demand Forecasting with Backtesting</span></a>
         </p>
+        <figure class="detail-visual"><img src="/assets/projects/forecasting-fold-mase.webp" srcset="/assets/projects/forecasting-fold-mase-thumb.webp 640w, /assets/projects/forecasting-fold-mase.webp 1262w" sizes="(min-width: 1040px) 976px, 100vw" width="1262" height="668" fetchpriority="high" alt="Chart from the forecasting repo: MASE per backtest fold for LightGBM, ETS, moving average, and seasonal naive. LightGBM is lowest in every fold."></figure>
       </header>
 
-      <section class="section" aria-labelledby="problem-title">
+      <div class="detail-body">
+      <section class="section reveal" aria-labelledby="problem-title">
         <h2 id="problem-title">Problem</h2>
         <p>Forecast weekly sales for 3,049 Walmart (M5) items in one store, and make sure the backtest never uses data from the future.</p>
       </section>
 
-      <section class="section" aria-labelledby="built-title">
+      <section class="section reveal" aria-labelledby="built-title">
         <h2 id="built-title">What I built</h2>
         <ul class="bullets">
           <li>Exponential smoothing and LightGBM models.</li>
@@ -73,7 +78,7 @@
         </ul>
       </section>
 
-      <section class="section" aria-labelledby="results-title">
+      <section class="section reveal" aria-labelledby="results-title">
         <h2 id="results-title">Results</h2>
         <ul class="bullets">
           <li>LightGBM reached a MASE of 0.963, vs 1.437 for a seasonal naive baseline.</li>
@@ -81,10 +86,11 @@
         </ul>
       </section>
 
-      <section class="section" aria-labelledby="stack-title">
+      <section class="section reveal" aria-labelledby="stack-title">
         <h2 id="stack-title">Stack</h2>
         <ul class="tags"><li>Python</li><li>LightGBM</li><li>pandas</li><li>Time series forecasting</li></ul>
       </section>
+      </div>
     </article>
   </main>
 
