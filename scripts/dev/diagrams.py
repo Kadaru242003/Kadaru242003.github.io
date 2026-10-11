@@ -59,3 +59,35 @@ def claimcheck_mcp(prefix):
         f"to work on claimcheck's 205 tasks in a Docker sandbox.</title>"
         f"{body}</svg>"
     )
+
+
+def _box_lines(x, y, w, h, lines, accent=False):
+    """Box with one or more title-style lines, vertically centred."""
+    cls = "dg-box-accent" if accent else "dg-box"
+    cx = x + w / 2
+    step = 48
+    first = y + h / 2 + 14 - step * (len(lines) - 1) / 2
+    texts = "".join(
+        f'<text class="dg-title" x="{cx:g}" y="{first + i * step:g}" text-anchor="middle">{t}</text>'
+        for i, t in enumerate(lines)
+    )
+    return f'<rect class="{cls}" x="{x}" y="{y}" width="{w}" height="{h}" rx="22"/>{texts}'
+
+
+def ab_framework(prefix):
+    tid = f"{prefix}-title"
+    body = "".join([
+        _box_lines(40, 50, 400, 200, ["SRM checks"], accent=True),
+        _box_lines(520, 50, 400, 200, ["z-tests and", "Welch's t-tests"]),
+        _box_lines(520, 290, 400, 200, ["Guardrails"]),
+        _box_lines(40, 290, 400, 200, ["ship, continue,", "or rollback"]),
+        _arrow(446, 150, 514, 150),
+        _arrow(720, 256, 720, 284),
+        _arrow(514, 390, 446, 390),
+    ])
+    return (
+        f'<svg viewBox="0 0 960 540" role="img" aria-labelledby="{tid}" xmlns="http://www.w3.org/2000/svg">'
+        f'<title id="{tid}">A/B Experimentation and Decision Framework: SRM checks, then z-tests and '
+        f"Welch's t-tests, then guardrails that decide ship, continue, or rollback.</title>"
+        f"{body}</svg>"
+    )
