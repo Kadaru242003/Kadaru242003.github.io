@@ -30,19 +30,19 @@ jobs:
           distribution: temurin
           java-version: "21"
       - name: html-validate (spec and accessibility rules)
-        run: npx --yes html-validate@9.7.1 index.html 404.html
+        run: npx --yes html-validate@9.7.1 *.html projects/*.html
       - name: W3C Nu HTML Checker
         run: |
           npm install --no-save vnu-jar@24.10.17
-          java -jar node_modules/vnu-jar/build/dist/vnu.jar --errors-only index.html 404.html
+          java -jar node_modules/vnu-jar/build/dist/vnu.jar --errors-only *.html projects/*.html
       - name: No em dashes
         run: |
-          if LC_ALL=C.UTF-8 grep -rnP --exclude-dir=.git --exclude-dir=node_modules '\x{2014}' .; then
+          if LC_ALL=C.UTF-8 grep -rnIP --exclude-dir=.git --exclude-dir=node_modules '\x{2014}' .; then
             echo "Em dash found. Use a comma, colon, or 'to' instead."
             exit 1
           fi
       - name: Local assets exist
-        run: test -f og-image.png && test -f favicon.svg
+        run: test -f og-image.png && test -f favicon.svg && test -f resume.pdf
 
   links:
     name: Broken links
@@ -51,7 +51,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: lycheeverse/lychee-action@v2
         with:
-          args: --config lychee.toml --no-progress index.html 404.html
+          args: --config lychee.toml --no-progress *.html projects/*.html
           fail: true
           jobSummary: true
         env:
@@ -73,8 +73,10 @@ jobs:
       - name: Collect site files
         run: |
           mkdir _site
-          cp index.html 404.html styles.css script.js favicon.svg og-image.png robots.txt sitemap.xml _site/
-          if [ -f resume.pdf ]; then cp resume.pdf _site/; fi
+          cp index.html 404.html styles.css script.js favicon.svg og-image.png robots.txt sitemap.xml resume.pdf _site/
+          cp -r projects _site/
+          mkdir _site/assets
+          cp assets/*.jpg assets/*.webp _site/assets/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

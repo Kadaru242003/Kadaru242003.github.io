@@ -471,3 +471,154 @@ ul {
 .site-footer p {
   margin: 0;
 }
+
+/* Hero with headshot */
+.hero-grid {
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.headshot {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--border);
+}
+
+@media (min-width: 720px) {
+  .hero-grid {
+    grid-template-columns: 1fr auto;
+  }
+
+  .hero-grid .headshot {
+    order: 2;
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* Experience context line */
+.entry-context {
+  margin: 0 0 0.5rem;
+}
+
+/* Card extras */
+.card-date {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.card-head .card-date {
+  margin-left: auto;
+}
+
+.shots {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  list-style: none;
+}
+
+@media (min-width: 560px) {
+  .shots {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.shots a {
+  display: block;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+
+.shots img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.shots figcaption {
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-top: 0.35rem;
+}
+
+.shots figure {
+  margin: 0;
+}
+
+/* Project detail pages */
+.detail-header {
+  padding-top: 2.5rem;
+}
+
+.detail-header .back {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
+.detail-meta {
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.detail-meta .badge {
+  margin-left: 0.25rem;
+}
+
+/* Lightbox */
+.lightbox {
+  border: 0;
+  padding: 0;
+  max-width: 96vw;
+  max-height: 92vh;
+  background: transparent;
+  overflow: visible;
+}
+
+.lightbox::backdrop {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.lightbox img {
+  display: block;
+  max-width: 96vw;
+  max-height: 84vh;
+  width: auto;
+  height: auto;
+  border-radius: 6px;
+  background: #fff;
+}
+
+.lightbox p {
+  color: #f0f0f0;
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: -0.75rem;
+  right: -0.75rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: 0;
+  background: #ffffff;
+  color: #1a1f26;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.section .entry-title {
+  margin: 0;
+  font-size: 1.0625rem;
+  font-weight: 600;
+}

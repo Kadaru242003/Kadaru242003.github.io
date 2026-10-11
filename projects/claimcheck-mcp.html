@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>claimcheck-mcp | Harshith Kadaru</title>
+  <meta name="description" content="An MCP server that gives AI agents 3 tools over claimcheck&#x27;s 205 tasks.">
+  <meta name="author" content="Harshith Kadaru">
+  <link rel="canonical" href="https://kadaru242003.github.io/projects/claimcheck-mcp.html">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f1419" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://kadaru242003.github.io/projects/claimcheck-mcp.html">
+  <meta property="og:title" content="claimcheck-mcp | Harshith Kadaru">
+  <meta property="og:description" content="An MCP server that gives AI agents 3 tools over claimcheck&#x27;s 205 tasks.">
+  <meta property="og:image" content="https://kadaru242003.github.io/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script>
+    try {
+      var t = localStorage.getItem("theme");
+      if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="/">Harshith Kadaru</a>
+      <ul class="nav-links">
+        <li><a href="/#experience">Experience</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/#education">Education</a></li>
+        <li><a href="/#skills">Skills</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" type="button" aria-label="Switch to dark theme" hidden>
+        <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></svg>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article class="container">
+      <header class="detail-header">
+        <a class="back" href="/#projects">Back to all projects</a>
+        <h1>claimcheck-mcp</h1>
+        <p class="detail-meta">MCP server &middot; Oct 2026</p>
+        <p class="lede">An MCP server that gives AI agents 3 tools over claimcheck&#x27;s 205 tasks.</p>
+        <p class="card-links">
+          <a href="https://github.com/Kadaru242003/claimcheck-mcp">GitHub<span class="visually-hidden">: claimcheck-mcp</span></a>
+          <a href="/projects/claimcheck.html">claimcheck<span class="visually-hidden">: claimcheck-mcp</span></a>
+        </p>
+      </header>
+
+      <section class="section" aria-labelledby="problem-title">
+        <h2 id="problem-title">Problem</h2>
+        <p>To test an agent on claimcheck, the agent needs a standard way to browse tasks and run its code. It must never see the answer files.</p>
+      </section>
+
+      <section class="section" aria-labelledby="built-title">
+        <h2 id="built-title">What I built</h2>
+        <ul class="bullets">
+          <li>An MCP server that gives AI agents 3 tools over claimcheck&#x27;s 205 tasks: list, read, and run in a Docker sandbox.</li>
+        </ul>
+      </section>
+
+      <section class="section" aria-labelledby="results-title">
+        <h2 id="results-title">Results</h2>
+        <ul class="bullets">
+          <li>Found and fixed a symlink leak of answer files.</li>
+          <li>96 tests run in CI.</li>
+        </ul>
+      </section>
+
+      <section class="section" aria-labelledby="stack-title">
+        <h2 id="stack-title">Stack</h2>
+        <ul class="tags"><li>Python</li><li>MCP</li><li>Tool calling</li><li>Docker</li><li>GitHub Actions CI</li></ul>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Harshith Kadaru</p>
+      <p><a href="/">Home</a></p>
+    </div>
+  </footer>
+
+  <script src="/script.js" defer></script>
+</body>
+</html>
