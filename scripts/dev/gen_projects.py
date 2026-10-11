@@ -143,7 +143,6 @@ def ul(items):
     return "\n".join(f"          <li>{esc(i)}</li>" for i in items)
 
 
-AB_ALT = "Chart from the A/B framework repo: conversion rate over time for control and treatment. Treatment stays above control while its early lift decays."
 FC_ALT = "Chart from the forecasting repo: MASE per backtest fold for LightGBM, ETS, moving average, and seasonal naive. LightGBM is lowest in every fold."
 RB_ALT = "RiskBot screen after an upload, with a table of detected sensitive data showing type, category, text snippet, and confidence."
 
@@ -153,8 +152,9 @@ def visual(slug):
         return '<figure class="detail-visual is-diagram">' + diagrams.claimcheck("dg-cc") + "</figure>"
     if slug == "claimcheck-mcp":
         return '<figure class="detail-visual is-diagram">' + diagrams.claimcheck_mcp("dg-mcp") + "</figure>"
+    if slug == "ab-experimentation-framework":
+        return '<figure class="detail-visual is-diagram">' + diagrams.ab_framework("dg-ab") + "</figure>"
     imgs = {
-        "ab-experimentation-framework": ("/assets/projects/ab-conversion-over-time", "-thumb", 640, 1205, 908, AB_ALT),
         "demand-forecasting-backtest": ("/assets/projects/forecasting-fold-mase", "-thumb", 640, 1262, 668, FC_ALT),
         "riskbot": ("/assets/riskbot-1", "-thumb", 800, 1600, 773, RB_ALT),
     }
