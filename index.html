@@ -186,6 +186,24 @@
         </li>
 
         <li class="card">
+          <figure class="card-visual">
+            <img src="/assets/projects/monitoring-auc-over-time-thumb.webp" width="640" height="270" loading="lazy" alt="Monthly ROC AUC from October 2016 to August 2017">
+          </figure>
+          <div class="card-head">
+            <h3>ML Model Service with Drift Monitoring</h3>
+            <span class="card-date">Oct 2026</span>
+          </div>
+          <p>A LightGBM model that predicts hotel booking cancellations, served with FastAPI in Docker, with every prediction logged to SQLite. I replayed 55,095 later bookings through the service. ROC AUC fell from 0.878 on validation to 0.760 in August 2017, but drift alarms did no better than random (precision 0.29, the same as random alarms). The drop tracked a shift in booking mix instead: the share of Non Refund bookings (weekly Spearman -0.84).</p>
+          <ul class="tags">
+            <li>Python</li><li>LightGBM</li><li>FastAPI</li><li>Docker</li><li>Drift monitoring</li>
+          </ul>
+          <p class="card-links">
+            <a href="/projects/ml-model-monitoring.html">Details<span class="visually-hidden">: ML Model Service with Drift Monitoring</span></a>
+            <a href="https://github.com/Kadaru242003/ml-model-monitoring">GitHub<span class="visually-hidden">: ML Model Service with Drift Monitoring</span></a>
+          </p>
+        </li>
+
+        <li class="card">
           <figure class="card-visual is-diagram">
             <svg viewBox="0 0 960 540" role="img" aria-labelledby="dg-mcp-card-title" xmlns="http://www.w3.org/2000/svg"><title id="dg-mcp-card-title">claimcheck-mcp: an AI agent uses the MCP server and its 3 tools (list, read, run) to work on claimcheck's 205 tasks in a Docker sandbox.</title><rect class="dg-box" x="40" y="50" width="380" height="200" rx="22"/><text class="dg-title" x="230" y="164" text-anchor="middle">AI agent</text><rect class="dg-box-accent" x="500" y="50" width="420" height="200" rx="22"/><text class="dg-title" x="710" y="144" text-anchor="middle">MCP server</text><text class="dg-sub" x="710" y="190" text-anchor="middle">3 tools: list, read, run</text><rect class="dg-box" x="240" y="290" width="480" height="200" rx="22"/><text class="dg-title" x="480" y="384" text-anchor="middle">Docker sandbox</text><text class="dg-sub" x="480" y="430" text-anchor="middle">claimcheck's 205 tasks</text><line class="dg-arrow" x1="426" y1="150" x2="472.0" y2="150.0"/><polygon class="dg-head" points="494.0,150.0 472.0,163.0 472.0,137.0"/><line class="dg-arrow" x1="710" y1="256" x2="660.2" y2="277.3"/><polygon class="dg-head" points="640.0,286.0 655.1,265.4 665.3,289.3"/></svg>
           </figure>
