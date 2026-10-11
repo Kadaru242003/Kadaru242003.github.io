@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>claimcheck | Harshith Kadaru</title>
+  <meta name="description" content="An open-source benchmark that tests whether AI coding agents falsely claim success.">
+  <meta name="author" content="Harshith Kadaru">
+  <link rel="canonical" href="https://kadaru242003.github.io/projects/claimcheck.html">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f1419" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://kadaru242003.github.io/projects/claimcheck.html">
+  <meta property="og:title" content="claimcheck | Harshith Kadaru">
+  <meta property="og:description" content="An open-source benchmark that tests whether AI coding agents falsely claim success.">
+  <meta property="og:image" content="https://kadaru242003.github.io/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css">
+  <script>
+    try {
+      var t = localStorage.getItem("theme");
+      if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="/">Harshith Kadaru</a>
+      <ul class="nav-links">
+        <li><a href="/#experience">Experience</a></li>
+        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/#education">Education</a></li>
+        <li><a href="/#skills">Skills</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" type="button" aria-label="Switch to dark theme" hidden>
+        <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></svg>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article class="container">
+      <header class="detail-header">
+        <a class="back" href="/#projects">Back to all projects</a>
+        <h1>claimcheck</h1>
+        <p class="detail-meta">Open-source benchmark <span class="badge">In Progress</span></p>
+        <p class="lede">An open-source benchmark that tests whether AI coding agents falsely claim success.</p>
+        <p class="card-links">
+          <a href="https://github.com/Kadaru242003/claimcheck">GitHub<span class="visually-hidden">: claimcheck</span></a>
+        </p>
+      </header>
+
+      <section class="section" aria-labelledby="problem-title">
+        <h2 id="problem-title">Problem</h2>
+        <p>AI coding agents often report that a task is done and the tests pass. claimcheck tests whether that claim is true.</p>
+        <p>Every task has known ground truth. Some tasks can be solved. Others cannot: the tests contradict themselves, the spec is impossible, or the environment is broken.</p>
+      </section>
+
+      <section class="section" aria-labelledby="built-title">
+        <h2 id="built-title">What I built</h2>
+        <ul class="bullets">
+          <li>205 tasks with verified ground truth.</li>
+          <li>A harness that ran GPT-OSS 120B and 20B through 530 runs at $0 API cost.</li>
+          <li>Grading hardened against 8 ways to fake a pass. 12 cheat strategies (1,236 attempts) get none through.</li>
+          <li>An LLM-as-a-judge from a different model family than the agents.</li>
+          <li>A pre-registered analysis using McNemar and Fisher tests.</li>
+        </ul>
+      </section>
+
+      <section class="section" aria-labelledby="results-title">
+        <h2 id="results-title">Results</h2>
+        <ul class="bullets">
+          <li>Caught GPT-OSS 120B reverse-engineering test data to pass an impossible task, then quietly claiming success.</li>
+          <li>Final results are still being computed.</li>
+        </ul>
+      </section>
+
+      <section class="section" aria-labelledby="stack-title">
+        <h2 id="stack-title">Stack</h2>
+        <ul class="tags"><li>Python</li><li>pytest</li><li>Docker</li><li>GPT-OSS 120B and 20B</li><li>LLM-as-a-judge</li><li>McNemar and Fisher tests</li></ul>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Harshith Kadaru</p>
+      <p><a href="/">Home</a></p>
+    </div>
+  </footer>
+
+  <script src="/script.js" defer></script>
+</body>
+</html>
