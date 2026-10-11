@@ -7,8 +7,8 @@
   <meta name="description" content="Flags sensitive HR and personal data across whole files, with document Q&amp;A.">
   <meta name="author" content="Harshith Kadaru">
   <link rel="canonical" href="https://kadaru242003.github.io/projects/riskbot.html">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0f1419" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1113" media="(prefers-color-scheme: dark)">
   <meta name="color-scheme" content="light dark">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://kadaru242003.github.io/projects/riskbot.html">
@@ -17,8 +17,11 @@
   <meta property="og:image" content="https://kadaru242003.github.io/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/fraunces-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/styles.css">
   <script>
+    document.documentElement.classList.add("js");
     try {
       var t = localStorage.getItem("theme");
       if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
@@ -33,7 +36,7 @@
       <a class="brand" href="/">Harshith Kadaru</a>
       <ul class="nav-links">
         <li><a href="/#experience">Experience</a></li>
-        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/#projects" aria-current="page">Projects</a></li>
         <li><a href="/#education">Education</a></li>
         <li><a href="/#skills">Skills</a></li>
         <li><a href="/#contact">Contact</a></li>
@@ -57,14 +60,16 @@
           <a href="https://hrci-nppi-doc-finder.onrender.com/static/index.html">Live Demo<span class="visually-hidden">: RiskBot</span></a>
         </p>
         <p class="note">The demo runs on a free tier and can take about 50 seconds to wake up.</p>
+        <figure class="detail-visual"><img src="/assets/riskbot-1.webp" width="1600" height="773" fetchpriority="high" alt="RiskBot screen after an upload, with a table of detected sensitive data showing type, category, text snippet, and confidence."></figure>
       </header>
 
-      <section class="section" aria-labelledby="problem-title">
+      <div class="detail-body">
+      <section class="section reveal" aria-labelledby="problem-title">
         <h2 id="problem-title">Problem</h2>
         <p>Shared files can hold sensitive HR data, such as salaries and performance reviews, and personal data, such as Social Security and bank account numbers. RiskBot finds it.</p>
       </section>
 
-      <section class="section" aria-labelledby="built-title">
+      <section class="section reveal" aria-labelledby="built-title">
         <h2 id="built-title">What I built</h2>
         <ul class="bullets">
           <li>Flags sensitive HR and personal data across whole files.</li>
@@ -73,14 +78,14 @@
         </ul>
       </section>
 
-      <section class="section" aria-labelledby="results-title">
+      <section class="section reveal" aria-labelledby="results-title">
         <h2 id="results-title">Results</h2>
         <ul class="bullets">
           <li>Cut peak memory from over 650 MB to 287 MB by swapping PyTorch for an ONNX embedder, to fit a 512 MB free tier.</li>
         </ul>
       </section>
 
-      <section class="section" aria-labelledby="shots-title">
+      <section class="section reveal" aria-labelledby="shots-title">
         <h2 id="shots-title">Screenshots</h2>
         <p>Select a screenshot to enlarge it.</p>
         <ul class="shots">
@@ -103,10 +108,11 @@
         </ul>
       </section>
 
-      <section class="section" aria-labelledby="stack-title">
+      <section class="section reveal" aria-labelledby="stack-title">
         <h2 id="stack-title">Stack</h2>
         <ul class="tags"><li>Python</li><li>FastAPI</li><li>RAG</li><li>ChromaDB</li><li>Embeddings</li><li>ONNX</li></ul>
       </section>
+      </div>
     </article>
   </main>
 

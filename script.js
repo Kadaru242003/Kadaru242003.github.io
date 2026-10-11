@@ -84,3 +84,54 @@
     });
   });
 })();
+
+// Fade sections in as they scroll into view. CSS only hides them when the
+// html element has the "js" class and the user allows motion, so the page
+// is fully visible without JavaScript.
+(function () {
+  var items = document.querySelectorAll(".reveal");
+  if (!items.length) return;
+  if (!("IntersectionObserver" in window)) {
+    Array.prototype.forEach.call(items, function (el) { el.classList.add("is-visible"); });
+    return;
+  }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        io.unobserve(entry.target);
+      }
+    });
+  }, { rootMargin: "0px 0px -8% 0px", threshold: 0.05 });
+  Array.prototype.forEach.call(items, function (el) { io.observe(el); });
+})();
+
+// Highlight the nav link for the section currently in view (home page).
+(function () {
+  if (!("IntersectionObserver" in window)) return;
+  var links = {};
+  Array.prototype.forEach.call(document.querySelectorAll('.nav-links a[href^="#"]'), function (a) {
+    links[a.getAttribute("href").slice(1)] = a;
+  });
+  var sections = Object.keys(links).map(function (id) { return document.getElementById(id); }).filter(Boolean);
+  if (!sections.length) return;
+
+  function setCurrent(id) {
+    Object.keys(links).forEach(function (key) {
+      if (key === id) links[key].setAttribute("aria-current", "true");
+      else links[key].removeAttribute("aria-current");
+    });
+  }
+
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) setCurrent(entry.target.id);
+    });
+  }, { rootMargin: "-40% 0px -55% 0px" });
+  sections.forEach(function (s) { io.observe(s); });
+
+  // Above the first section, nothing is current.
+  window.addEventListener("scroll", function () {
+    if (window.scrollY < sections[0].offsetTop - window.innerHeight * 0.4) setCurrent(null);
+  }, { passive: true });
+})();
