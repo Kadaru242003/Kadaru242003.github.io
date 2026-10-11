@@ -7,8 +7,8 @@
   <meta name="description" content="Harshith Kadaru, MS Data Science at GW (4.0 GPA, May 2027). I build ML systems, LLM evaluations, and the software around them.">
   <meta name="author" content="Harshith Kadaru">
   <link rel="canonical" href="https://kadaru242003.github.io/">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0f1419" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1113" media="(prefers-color-scheme: dark)">
   <meta name="color-scheme" content="light dark">
 
   <meta property="og:type" content="website">
@@ -25,6 +25,8 @@
   <meta name="twitter:image" content="https://kadaru242003.github.io/og-image.png">
 
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/fraunces-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/styles.css">
 
   <script type="application/ld+json">
@@ -46,6 +48,7 @@
   }
   </script>
   <script>
+    document.documentElement.classList.add("js");
     try {
       var t = localStorage.getItem("theme");
       if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
@@ -76,23 +79,23 @@
   <main id="main">
     <section class="hero container" id="top" aria-labelledby="hero-title">
       <div class="hero-grid">
-        <img class="headshot" src="/assets/headshot.jpg" alt="Harshith Kadaru" width="200" height="200">
+        <img class="headshot" src="/assets/headshot.webp" srcset="/assets/headshot-296.webp 296w, /assets/headshot.webp 472w" sizes="(min-width: 760px) 236px, 148px" alt="Harshith Kadaru" width="236" height="236" fetchpriority="high">
         <div>
           <h1 id="hero-title">Harshith Kadaru</h1>
           <p class="lede">MS Data Science at GW (4.0 GPA, May 2027). I build ML systems, LLM evaluations, and the software around them.</p>
+          <ul class="actions">
+            <li><a class="btn btn-primary" href="/resume.pdf">Resume</a></li>
+            <li><a class="btn" href="https://github.com/Kadaru242003">GitHub</a></li>
+            <li><a class="btn" href="https://www.linkedin.com/in/harshith-kadaru/">LinkedIn</a></li>
+            <li><a class="btn" href="mailto:kadaruharshith@gmail.com">Email</a></li>
+          </ul>
         </div>
       </div>
-      <ul class="actions">
-        <li><a class="btn btn-primary" href="/resume.pdf">Resume</a></li>
-        <li><a class="btn" href="https://github.com/Kadaru242003">GitHub</a></li>
-        <li><a class="btn" href="https://www.linkedin.com/in/harshith-kadaru/">LinkedIn</a></li>
-        <li><a class="btn" href="mailto:kadaruharshith@gmail.com">Email</a></li>
-      </ul>
     </section>
 
-    <section class="section container" id="experience" aria-labelledby="experience-title">
+    <section class="section container reveal" id="experience" aria-labelledby="experience-title">
       <h2 id="experience-title">Experience</h2>
-      <ul class="entries">
+      <ul class="entries timeline">
         <li class="entry">
           <div class="entry-head">
             <h3 class="entry-title">Software Engineering / AI Intern</h3>
@@ -159,10 +162,13 @@
       </ul>
     </section>
 
-    <section class="section container" id="projects" aria-labelledby="projects-title">
+    <section class="section container reveal" id="projects" aria-labelledby="projects-title">
       <h2 id="projects-title">Projects</h2>
       <ul class="cards">
         <li class="card">
+          <figure class="card-visual is-diagram">
+            <svg viewBox="0 0 960 540" role="img" aria-labelledby="dg-cc-card-title" xmlns="http://www.w3.org/2000/svg"><title id="dg-cc-card-title">claimcheck pipeline: 205 tasks with verified ground truth go to an agent harness running GPT-OSS 120B and 20B, then to hardened grading, then to an LLM-as-a-judge from a different model family.</title><rect class="dg-box-accent" x="40" y="50" width="400" height="200" rx="22"/><text class="dg-title" x="240" y="144" text-anchor="middle">205 tasks</text><text class="dg-sub" x="240" y="190" text-anchor="middle">verified ground truth</text><rect class="dg-box" x="520" y="50" width="400" height="200" rx="22"/><text class="dg-title" x="720" y="144" text-anchor="middle">Agent harness</text><text class="dg-sub" x="720" y="190" text-anchor="middle">GPT-OSS 120B and 20B</text><rect class="dg-box" x="520" y="290" width="400" height="200" rx="22"/><text class="dg-title" x="720" y="384" text-anchor="middle">Grading</text><text class="dg-sub" x="720" y="430" text-anchor="middle">hardened</text><rect class="dg-box" x="40" y="290" width="400" height="200" rx="22"/><text class="dg-title" x="240" y="384" text-anchor="middle">LLM-as-a-judge</text><text class="dg-sub" x="240" y="430" text-anchor="middle">different model family</text><line class="dg-arrow" x1="446" y1="150" x2="492.0" y2="150.0"/><polygon class="dg-head" points="514.0,150.0 492.0,163.0 492.0,137.0"/><line class="dg-arrow" x1="720" y1="256" x2="720.0" y2="262.0"/><polygon class="dg-head" points="720.0,284.0 707.0,262.0 733.0,262.0"/><line class="dg-arrow" x1="514" y1="390" x2="468.0" y2="390.0"/><polygon class="dg-head" points="446.0,390.0 468.0,377.0 468.0,403.0"/></svg>
+          </figure>
           <div class="card-head">
             <h3>claimcheck</h3>
             <span class="badge">In Progress</span>
@@ -180,6 +186,9 @@
         </li>
 
         <li class="card">
+          <figure class="card-visual is-diagram">
+            <svg viewBox="0 0 960 540" role="img" aria-labelledby="dg-mcp-card-title" xmlns="http://www.w3.org/2000/svg"><title id="dg-mcp-card-title">claimcheck-mcp: an AI agent uses the MCP server and its 3 tools (list, read, run) to work on claimcheck's 205 tasks in a Docker sandbox.</title><rect class="dg-box" x="40" y="50" width="380" height="200" rx="22"/><text class="dg-title" x="230" y="164" text-anchor="middle">AI agent</text><rect class="dg-box-accent" x="500" y="50" width="420" height="200" rx="22"/><text class="dg-title" x="710" y="144" text-anchor="middle">MCP server</text><text class="dg-sub" x="710" y="190" text-anchor="middle">3 tools: list, read, run</text><rect class="dg-box" x="240" y="290" width="480" height="200" rx="22"/><text class="dg-title" x="480" y="384" text-anchor="middle">Docker sandbox</text><text class="dg-sub" x="480" y="430" text-anchor="middle">claimcheck's 205 tasks</text><line class="dg-arrow" x1="426" y1="150" x2="472.0" y2="150.0"/><polygon class="dg-head" points="494.0,150.0 472.0,163.0 472.0,137.0"/><line class="dg-arrow" x1="710" y1="256" x2="660.2" y2="277.3"/><polygon class="dg-head" points="640.0,286.0 655.1,265.4 665.3,289.3"/></svg>
+          </figure>
           <div class="card-head">
             <h3>claimcheck-mcp</h3>
             <span class="card-date">Oct 2026</span>
@@ -195,6 +204,9 @@
         </li>
 
         <li class="card">
+          <figure class="card-visual is-diagram">
+            <svg viewBox="0 0 960 540" role="img" aria-labelledby="dg-ab-card-title" xmlns="http://www.w3.org/2000/svg"><title id="dg-ab-card-title">A/B Experimentation and Decision Framework: SRM checks, then z-tests and Welch's t-tests, then guardrails that decide ship, continue, or rollback.</title><rect class="dg-box-accent" x="40" y="50" width="400" height="200" rx="22"/><text class="dg-title" x="240" y="164" text-anchor="middle">SRM checks</text><rect class="dg-box" x="520" y="50" width="400" height="200" rx="22"/><text class="dg-title" x="720" y="140" text-anchor="middle">z-tests and</text><text class="dg-title" x="720" y="188" text-anchor="middle">Welch's t-tests</text><rect class="dg-box" x="520" y="290" width="400" height="200" rx="22"/><text class="dg-title" x="720" y="404" text-anchor="middle">Guardrails</text><rect class="dg-box" x="40" y="290" width="400" height="200" rx="22"/><text class="dg-title" x="240" y="380" text-anchor="middle">ship, continue,</text><text class="dg-title" x="240" y="428" text-anchor="middle">or rollback</text><line class="dg-arrow" x1="446" y1="150" x2="492.0" y2="150.0"/><polygon class="dg-head" points="514.0,150.0 492.0,163.0 492.0,137.0"/><line class="dg-arrow" x1="720" y1="256" x2="720.0" y2="262.0"/><polygon class="dg-head" points="720.0,284.0 707.0,262.0 733.0,262.0"/><line class="dg-arrow" x1="514" y1="390" x2="468.0" y2="390.0"/><polygon class="dg-head" points="446.0,390.0 468.0,377.0 468.0,403.0"/></svg>
+          </figure>
           <div class="card-head">
             <h3>A/B Experimentation and Decision Framework</h3>
           </div>
@@ -209,6 +221,9 @@
         </li>
 
         <li class="card">
+          <figure class="card-visual">
+            <img src="/assets/projects/forecasting-fold-mase-thumb.webp" width="640" height="339" loading="lazy" alt="Chart from the forecasting repo: MASE per backtest fold for LightGBM, ETS, moving average, and seasonal naive. LightGBM is lowest in every fold.">
+          </figure>
           <div class="card-head">
             <h3>Demand Forecasting with Backtesting</h3>
             <span class="card-date">Oct 2026</span>
@@ -224,12 +239,7 @@
         </li>
 
         <li class="card">
-          <div class="card-head">
-            <h3>RiskBot</h3>
-            <span class="card-date">Dec 2025</span>
-          </div>
-          <p>Flags sensitive HR and personal data across whole files, with document Q&amp;A using top-k retrieval in ChromaDB. I cut peak memory from over 650 MB to 287 MB by swapping PyTorch for an ONNX embedder, so it fits a 512 MB free tier.</p>
-          <ul class="shots">
+          <ul class="shots card-visual">
             <li>
               <figure>
                 <a href="/assets/riskbot-1.webp" data-lightbox data-caption="Detected sensitive data for an uploaded file.">
@@ -247,6 +257,11 @@
               </figure>
             </li>
           </ul>
+          <div class="card-head">
+            <h3>RiskBot</h3>
+            <span class="card-date">Dec 2025</span>
+          </div>
+          <p>Flags sensitive HR and personal data across whole files, with document Q&amp;A using top-k retrieval in ChromaDB. I cut peak memory from over 650 MB to 287 MB by swapping PyTorch for an ONNX embedder, so it fits a 512 MB free tier.</p>
           <ul class="tags">
             <li>Python</li><li>FastAPI</li><li>RAG</li><li>ChromaDB</li><li>Embeddings</li>
           </ul>
@@ -260,17 +275,17 @@
       </ul>
     </section>
 
-    <section class="section container" id="achievements" aria-labelledby="achievements-title">
+    <section class="section container reveal" id="achievements" aria-labelledby="achievements-title">
       <h2 id="achievements-title">Achievements</h2>
       <ul class="entries">
-        <li class="entry">
+        <li class="entry highlight">
           <h3 class="entry-title">Winner, GW Data Science Association Datathon 2026</h3>
           <p>Built a 24-page Python and Streamlit platform analyzing 500K+ rows. It used K-Means clustering, regression, and simulation to recommend policy interventions.</p>
         </li>
       </ul>
     </section>
 
-    <section class="section container" id="education" aria-labelledby="education-title">
+    <section class="section container reveal" id="education" aria-labelledby="education-title">
       <h2 id="education-title">Education</h2>
       <ul class="entries">
         <li class="entry entry-media">
@@ -293,7 +308,7 @@
       </ul>
     </section>
 
-    <section class="section container" id="skills" aria-labelledby="skills-title">
+    <section class="section container reveal" id="skills" aria-labelledby="skills-title">
       <h2 id="skills-title">Skills</h2>
       <dl class="skills">
         <div>
@@ -315,8 +330,9 @@
       </dl>
     </section>
 
-    <section class="section container" id="contact" aria-labelledby="contact-title">
+    <section class="section container reveal" id="contact" aria-labelledby="contact-title">
       <h2 id="contact-title">Contact</h2>
+      <div class="contact-panel">
       <p>The best way to reach me is by email.</p>
       <ul class="contact-list">
         <li><span class="contact-label">Email</span> <a href="mailto:kadaruharshith@gmail.com">kadaruharshith@gmail.com</a></li>
@@ -324,6 +340,7 @@
         <li><span class="contact-label">LinkedIn</span> <a href="https://www.linkedin.com/in/harshith-kadaru/">linkedin.com/in/harshith-kadaru</a></li>
         <li><span class="contact-label">Resume</span> <a href="/resume.pdf">resume.pdf</a></li>
       </ul>
+      </div>
     </section>
   </main>
 
