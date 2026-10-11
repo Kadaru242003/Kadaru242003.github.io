@@ -10,7 +10,7 @@ Plain HTML, CSS, and a small script (theme toggle and screenshot lightbox). No b
 |---|---|
 | `index.html` | Home page: Experience, Projects, Achievements, Education, Skills, Contact |
 | `projects/*.html` | One detail page per project: problem, what I built, results, stack, links |
-| `assets/` | Headshot and RiskBot screenshots (`*-thumb.webp` on cards, `*.webp` in the lightbox, `*.png` originals are not deployed) |
+| `assets/` | Headshot, GW photo (`gwu.webp`), and RiskBot screenshots (`*-thumb.webp` on cards, `*.webp` in the lightbox). `*.png` files are sources and are not deployed |
 | `styles.css` | Styles, light and dark themes |
 | `script.js` | Theme toggle and screenshot lightbox (without JavaScript the site follows the system theme and screenshots open as plain images) |
 | `404.html` | Not found page |
