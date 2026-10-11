@@ -54,9 +54,11 @@ jobs:
           npx --yes html-validate@9.7.1 _site/*.html _site/projects/*.html
           java -jar node_modules/vnu-jar/build/dist/vnu.jar --errors-only _site/*.html _site/projects/*.html
           grep -q 'id="github"' _site/index.html && echo "GitHub activity section present" || echo "::warning::GitHub activity section not built"
-      - name: Contributions data (for review)
+      - name: Contributions summary (for review)
         if: always()
-        run: test -f contributions.json && cat contributions.json || echo "no contributions data"
+        run: |
+          test -f contributions.json || { echo "no contributions data"; exit 0; }
+          python3 -c "import json; c=json.load(open('contributions.json')); d=[x for w in c['weeks'] for x in w['contributionDays']]; print('total', c['totalContributions'], 'days', len(d), d[0]['date'], d[-1]['date']); print(' '.join(f\"{x['date']}={x['contributionCount']}:{x['contributionLevel']}\" for x in d if x['contributionCount']))"
 
   links:
     name: Broken links

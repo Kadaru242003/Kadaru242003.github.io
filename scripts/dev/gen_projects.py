@@ -154,12 +154,15 @@ def visual(slug):
     if slug == "claimcheck-mcp":
         return '<figure class="detail-visual is-diagram">' + diagrams.claimcheck_mcp("dg-mcp") + "</figure>"
     imgs = {
-        "ab-experimentation-framework": ("/assets/projects/ab-conversion-over-time.webp", 1205, 908, AB_ALT),
-        "demand-forecasting-backtest": ("/assets/projects/forecasting-fold-mase.webp", 1262, 668, FC_ALT),
-        "riskbot": ("/assets/riskbot-1.webp", 1600, 773, RB_ALT),
+        "ab-experimentation-framework": ("/assets/projects/ab-conversion-over-time", "-thumb", 640, 1205, 908, AB_ALT),
+        "demand-forecasting-backtest": ("/assets/projects/forecasting-fold-mase", "-thumb", 640, 1262, 668, FC_ALT),
+        "riskbot": ("/assets/riskbot-1", "-thumb", 800, 1600, 773, RB_ALT),
     }
-    src, w, h, alt = imgs[slug]
-    return f'<figure class="detail-visual"><img src="{src}" width="{w}" height="{h}" fetchpriority="high" alt="{esc(alt)}"></figure>'
+    base, small, sw, w, h, alt = imgs[slug]
+    srcset = f"{base}{small}.webp {sw}w, {base}.webp {w}w"
+    sizes = "(min-width: 1040px) 976px, 100vw"
+    return (f'<figure class="detail-visual"><img src="{base}.webp" srcset="{srcset}" sizes="{sizes}" '
+            f'width="{w}" height="{h}" fetchpriority="high" alt="{esc(alt)}"></figure>')
 
 
 def page(p):
