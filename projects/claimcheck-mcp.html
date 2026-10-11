@@ -7,8 +7,8 @@
   <meta name="description" content="An MCP server that gives AI agents 3 tools over claimcheck&#x27;s 205 tasks.">
   <meta name="author" content="Harshith Kadaru">
   <link rel="canonical" href="https://kadaru242003.github.io/projects/claimcheck-mcp.html">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0f1419" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1113" media="(prefers-color-scheme: dark)">
   <meta name="color-scheme" content="light dark">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://kadaru242003.github.io/projects/claimcheck-mcp.html">
@@ -17,8 +17,11 @@
   <meta property="og:image" content="https://kadaru242003.github.io/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/fraunces-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/styles.css">
   <script>
+    document.documentElement.classList.add("js");
     try {
       var t = localStorage.getItem("theme");
       if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
@@ -33,7 +36,7 @@
       <a class="brand" href="/">Harshith Kadaru</a>
       <ul class="nav-links">
         <li><a href="/#experience">Experience</a></li>
-        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/#projects" aria-current="page">Projects</a></li>
         <li><a href="/#education">Education</a></li>
         <li><a href="/#skills">Skills</a></li>
         <li><a href="/#contact">Contact</a></li>
@@ -56,21 +59,23 @@
           <a href="https://github.com/Kadaru242003/claimcheck-mcp">GitHub<span class="visually-hidden">: claimcheck-mcp</span></a>
           <a href="/projects/claimcheck.html">claimcheck<span class="visually-hidden">: claimcheck-mcp</span></a>
         </p>
+        <figure class="detail-visual is-diagram"><svg viewBox="0 0 960 540" role="img" aria-labelledby="dg-mcp-title" xmlns="http://www.w3.org/2000/svg"><title id="dg-mcp-title">claimcheck-mcp: an AI agent uses the MCP server and its 3 tools (list, read, run) to work on claimcheck's 205 tasks in a Docker sandbox.</title><rect class="dg-box" x="40" y="50" width="380" height="200" rx="22"/><text class="dg-title" x="230" y="164" text-anchor="middle">AI agent</text><rect class="dg-box-accent" x="500" y="50" width="420" height="200" rx="22"/><text class="dg-title" x="710" y="144" text-anchor="middle">MCP server</text><text class="dg-sub" x="710" y="190" text-anchor="middle">3 tools: list, read, run</text><rect class="dg-box" x="240" y="290" width="480" height="200" rx="22"/><text class="dg-title" x="480" y="384" text-anchor="middle">Docker sandbox</text><text class="dg-sub" x="480" y="430" text-anchor="middle">claimcheck's 205 tasks</text><line class="dg-arrow" x1="426" y1="150" x2="472.0" y2="150.0"/><polygon class="dg-head" points="494.0,150.0 472.0,163.0 472.0,137.0"/><line class="dg-arrow" x1="710" y1="256" x2="660.2" y2="277.3"/><polygon class="dg-head" points="640.0,286.0 655.1,265.4 665.3,289.3"/></svg></figure>
       </header>
 
-      <section class="section" aria-labelledby="problem-title">
+      <div class="detail-body">
+      <section class="section reveal" aria-labelledby="problem-title">
         <h2 id="problem-title">Problem</h2>
         <p>To test an agent on claimcheck, the agent needs a standard way to browse tasks and run its code. It must never see the answer files.</p>
       </section>
 
-      <section class="section" aria-labelledby="built-title">
+      <section class="section reveal" aria-labelledby="built-title">
         <h2 id="built-title">What I built</h2>
         <ul class="bullets">
           <li>An MCP server that gives AI agents 3 tools over claimcheck&#x27;s 205 tasks: list, read, and run in a Docker sandbox.</li>
         </ul>
       </section>
 
-      <section class="section" aria-labelledby="results-title">
+      <section class="section reveal" aria-labelledby="results-title">
         <h2 id="results-title">Results</h2>
         <ul class="bullets">
           <li>Found and fixed a symlink leak of answer files.</li>
@@ -78,10 +83,11 @@
         </ul>
       </section>
 
-      <section class="section" aria-labelledby="stack-title">
+      <section class="section reveal" aria-labelledby="stack-title">
         <h2 id="stack-title">Stack</h2>
         <ul class="tags"><li>Python</li><li>MCP</li><li>Tool calling</li><li>Docker</li><li>GitHub Actions CI</li></ul>
       </section>
+      </div>
     </article>
   </main>
 

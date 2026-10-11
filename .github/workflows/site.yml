@@ -43,6 +43,20 @@ jobs:
           fi
       - name: Local assets exist
         run: test -f og-image.png && test -f favicon.svg && test -f resume.pdf
+      - name: Fetch GitHub contributions
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/fetch_contributions.py Kadaru242003 contributions.json
+      - name: Build site
+        run: python3 scripts/build.py contributions.json
+      - name: Validate built site
+        run: |
+          npx --yes html-validate@9.7.1 _site/*.html _site/projects/*.html
+          java -jar node_modules/vnu-jar/build/dist/vnu.jar --errors-only _site/*.html _site/projects/*.html
+          grep -q 'id="github"' _site/index.html && echo "GitHub activity section present" || echo "::warning::GitHub activity section not built"
+      - name: Contributions data (for review)
+        if: always()
+        run: test -f contributions.json && cat contributions.json || echo "no contributions data"
 
   links:
     name: Broken links
@@ -60,7 +74,8 @@ jobs:
   deploy:
     name: Deploy to GitHub Pages
     needs: [html, links]
-    if: github.ref == 'refs/heads/main' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+    # Push, manual run, or the weekly schedule (keeps the GitHub activity graph current).
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       pages: write
@@ -70,13 +85,12 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - name: Collect site files
-        run: |
-          mkdir _site
-          cp index.html 404.html styles.css script.js favicon.svg og-image.png robots.txt sitemap.xml resume.pdf _site/
-          cp -r projects _site/
-          mkdir _site/assets
-          cp assets/*.jpg assets/*.webp _site/assets/
+      - name: Fetch GitHub contributions
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 scripts/fetch_contributions.py Kadaru242003 contributions.json
+      - name: Build site
+        run: python3 scripts/build.py contributions.json
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
