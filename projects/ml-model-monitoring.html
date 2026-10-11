@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ML Model Service with Drift Monitoring | Harshith Kadaru</title>
+  <meta name="description" content="A LightGBM model that predicts hotel booking cancellations, served with FastAPI in Docker, with every prediction logged to SQLite.">
+  <meta name="author" content="Harshith Kadaru">
+  <link rel="canonical" href="https://kadaru242003.github.io/projects/ml-model-monitoring.html">
+  <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1113" media="(prefers-color-scheme: dark)">
+  <meta name="color-scheme" content="light dark">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://kadaru242003.github.io/projects/ml-model-monitoring.html">
+  <meta property="og:title" content="ML Model Service with Drift Monitoring | Harshith Kadaru">
+  <meta property="og:description" content="A LightGBM model that predicts hotel booking cancellations, served with FastAPI in Docker, with every prediction logged to SQLite.">
+  <meta property="og:image" content="https://kadaru242003.github.io/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/fraunces-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+  <script>
+    document.documentElement.classList.add("js");
+    try {
+      var t = localStorage.getItem("theme");
+      if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
+    } catch (e) {}
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <nav class="nav container" aria-label="Primary">
+      <a class="brand" href="/">Harshith Kadaru</a>
+      <ul class="nav-links">
+        <li><a href="/#experience">Experience</a></li>
+        <li><a href="/#projects" aria-current="page">Projects</a></li>
+        <li><a href="/#education">Education</a></li>
+        <li><a href="/#skills">Skills</a></li>
+        <li><a href="/#contact">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" type="button" aria-label="Switch to dark theme" hidden>
+        <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24" width="18" height="18"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><g stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></g></svg>
+      </button>
+    </nav>
+  </header>
+
+  <main id="main">
+    <article class="container">
+      <header class="detail-header">
+        <a class="back" href="/#projects">Back to all projects</a>
+        <h1>ML Model Service with Drift Monitoring</h1>
+        <p class="detail-meta">Oct 2026</p>
+        <p class="lede">A LightGBM model that predicts hotel booking cancellations, served with FastAPI in Docker, with every prediction logged to SQLite.</p>
+        <p class="card-links">
+          <a href="https://github.com/Kadaru242003/ml-model-monitoring">GitHub<span class="visually-hidden">: ML Model Service with Drift Monitoring</span></a>
+        </p>
+        <figure class="detail-visual"><img src="/assets/projects/monitoring-auc-over-time.webp" srcset="/assets/projects/monitoring-auc-over-time-thumb.webp 640w, /assets/projects/monitoring-auc-over-time.webp 990w" sizes="(min-width: 1040px) 976px, 100vw" width="990" height="418" fetchpriority="high" alt="Monthly ROC AUC from October 2016 to August 2017"></figure>
+      </header>
+
+      <div class="detail-body">
+      <section class="section reveal" aria-labelledby="problem-title">
+        <h2 id="problem-title">Problem</h2>
+        <p>A hotel wants a cancellation probability for each booking, to plan overbooking and staffing. Drift monitoring is supposed to warn you when a model starts to fail. I tested whether it actually does.</p>
+      </section>
+
+      <section class="section reveal" aria-labelledby="built-title">
+        <h2 id="built-title">What I built</h2>
+        <ul class="bullets">
+          <li>Time-based split on the Hotel Booking Demand dataset (two hotels in Portugal, 2015 to 2017). Removed leaking columns that are recorded after booking, such as reservation_status and booking_changes.</li>
+          <li>Logistic regression baseline and a LightGBM model, tuned on an inner time split inside the training year, not on validation.</li>
+          <li>FastAPI service in Docker with input validation, prediction logging to SQLite, and a labels endpoint.</li>
+          <li>Monthly and weekly drift monitoring with PSI, KS, and chi-square tests.</li>
+          <li>A simulation that injects known shifts to measure each detector&#x27;s detection rate and false alarm rate.</li>
+        </ul>
+      </section>
+
+      <section class="section reveal" aria-labelledby="results-title">
+        <h2 id="results-title">Results</h2>
+        <ul class="bullets">
+          <li>Validation ROC AUC 0.878 for LightGBM vs 0.849 for logistic regression.</li>
+          <li>Production AUC held near validation until June 2017, then fell to 0.782 in July and 0.760 in August 2017.</li>
+          <li>Every alarm rule had precision near 0.29, the share of degraded weeks. Drift scores did not predict the drop.</li>
+          <li>The share of Non Refund bookings tracked the drop (weekly Spearman -0.84). These bookings are easy to rank, so when they fell, AUC fell.</li>
+          <li>At n = 1000, a lead_time shift of SMD 0.10 was caught by KS in 58% of trials and by PSI &gt;= 0.1 in 0%.</li>
+          <li>Single prediction latency in Docker: p50 16.5 ms, p95 23.5 ms, measured on a local build.</li>
+        </ul>
+      </section>
+
+      <section class="section reveal" aria-labelledby="lesson-title">
+        <h2 id="lesson-title">Lesson</h2>
+        <p>On this data, drift scores help explain a change after the fact, but they are not a reliable alarm. Watching labeled performance by segment works better.</p>
+      </section>
+
+      <section class="section reveal" aria-labelledby="stack-title">
+        <h2 id="stack-title">Stack</h2>
+        <ul class="tags"><li>Python</li><li>LightGBM</li><li>scikit-learn</li><li>FastAPI</li><li>Docker</li><li>SQLite</li><li>GitHub Actions CI</li></ul>
+      </section>
+      </div>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Harshith Kadaru</p>
+      <p><a href="/">Home</a></p>
+    </div>
+  </footer>
+
+  <script src="/script.js" defer></script>
+</body>
+</html>
