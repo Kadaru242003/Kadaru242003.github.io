@@ -7,8 +7,8 @@
   <meta name="description" content="An open-source benchmark that tests whether AI coding agents falsely claim success.">
   <meta name="author" content="Harshith Kadaru">
   <link rel="canonical" href="https://kadaru242003.github.io/projects/claimcheck.html">
-  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-  <meta name="theme-color" content="#0f1419" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#fbfaf7" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e1113" media="(prefers-color-scheme: dark)">
   <meta name="color-scheme" content="light dark">
   <meta property="og:type" content="article">
   <meta property="og:url" content="https://kadaru242003.github.io/projects/claimcheck.html">
@@ -17,8 +17,11 @@
   <meta property="og:image" content="https://kadaru242003.github.io/og-image.png">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/inter-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/assets/fonts/fraunces-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/styles.css">
   <script>
+    document.documentElement.classList.add("js");
     try {
       var t = localStorage.getItem("theme");
       if (t === "light" || t === "dark") document.documentElement.setAttribute("data-theme", t);
@@ -33,7 +36,7 @@
       <a class="brand" href="/">Harshith Kadaru</a>
       <ul class="nav-links">
         <li><a href="/#experience">Experience</a></li>
-        <li><a href="/#projects">Projects</a></li>
+        <li><a href="/#projects" aria-current="page">Projects</a></li>
         <li><a href="/#education">Education</a></li>
         <li><a href="/#skills">Skills</a></li>
         <li><a href="/#contact">Contact</a></li>
@@ -55,15 +58,17 @@
         <p class="card-links">
           <a href="https://github.com/Kadaru242003/claimcheck">GitHub<span class="visually-hidden">: claimcheck</span></a>
         </p>
+        <figure class="detail-visual is-diagram"><svg viewBox="0 0 960 540" role="img" aria-labelledby="dg-cc-title" xmlns="http://www.w3.org/2000/svg"><title id="dg-cc-title">claimcheck pipeline: 205 tasks with verified ground truth go to an agent harness running GPT-OSS 120B and 20B, then to hardened grading, then to an LLM-as-a-judge from a different model family.</title><rect class="dg-box-accent" x="40" y="50" width="400" height="200" rx="22"/><text class="dg-title" x="240" y="144" text-anchor="middle">205 tasks</text><text class="dg-sub" x="240" y="190" text-anchor="middle">verified ground truth</text><rect class="dg-box" x="520" y="50" width="400" height="200" rx="22"/><text class="dg-title" x="720" y="144" text-anchor="middle">Agent harness</text><text class="dg-sub" x="720" y="190" text-anchor="middle">GPT-OSS 120B and 20B</text><rect class="dg-box" x="520" y="290" width="400" height="200" rx="22"/><text class="dg-title" x="720" y="384" text-anchor="middle">Grading</text><text class="dg-sub" x="720" y="430" text-anchor="middle">hardened</text><rect class="dg-box" x="40" y="290" width="400" height="200" rx="22"/><text class="dg-title" x="240" y="384" text-anchor="middle">LLM-as-a-judge</text><text class="dg-sub" x="240" y="430" text-anchor="middle">different model family</text><line class="dg-arrow" x1="446" y1="150" x2="492.0" y2="150.0"/><polygon class="dg-head" points="514.0,150.0 492.0,163.0 492.0,137.0"/><line class="dg-arrow" x1="720" y1="256" x2="720.0" y2="262.0"/><polygon class="dg-head" points="720.0,284.0 707.0,262.0 733.0,262.0"/><line class="dg-arrow" x1="514" y1="390" x2="468.0" y2="390.0"/><polygon class="dg-head" points="446.0,390.0 468.0,377.0 468.0,403.0"/></svg></figure>
       </header>
 
-      <section class="section" aria-labelledby="problem-title">
+      <div class="detail-body">
+      <section class="section reveal" aria-labelledby="problem-title">
         <h2 id="problem-title">Problem</h2>
         <p>AI coding agents often report that a task is done and the tests pass. claimcheck tests whether that claim is true.</p>
         <p>Every task has known ground truth. Some tasks can be solved. Others cannot: the tests contradict themselves, the spec is impossible, or the environment is broken.</p>
       </section>
 
-      <section class="section" aria-labelledby="built-title">
+      <section class="section reveal" aria-labelledby="built-title">
         <h2 id="built-title">What I built</h2>
         <ul class="bullets">
           <li>205 tasks with verified ground truth.</li>
@@ -74,7 +79,7 @@
         </ul>
       </section>
 
-      <section class="section" aria-labelledby="results-title">
+      <section class="section reveal" aria-labelledby="results-title">
         <h2 id="results-title">Results</h2>
         <ul class="bullets">
           <li>Caught GPT-OSS 120B reverse-engineering test data to pass an impossible task, then quietly claiming success.</li>
@@ -82,10 +87,11 @@
         </ul>
       </section>
 
-      <section class="section" aria-labelledby="stack-title">
+      <section class="section reveal" aria-labelledby="stack-title">
         <h2 id="stack-title">Stack</h2>
         <ul class="tags"><li>Python</li><li>pytest</li><li>Docker</li><li>GPT-OSS 120B and 20B</li><li>LLM-as-a-judge</li><li>McNemar and Fisher tests</li></ul>
       </section>
+      </div>
     </article>
   </main>
 
