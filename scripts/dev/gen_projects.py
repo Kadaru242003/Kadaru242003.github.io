@@ -38,6 +38,33 @@ PROJECTS = [
         "links": [("GitHub", "https://github.com/Kadaru242003/claimcheck")],
     },
     {
+        "slug": "ml-model-monitoring",
+        "title": "ML Model Service with Drift Monitoring",
+        "meta": "Oct 2026",
+        "summary": "A LightGBM model that predicts hotel booking cancellations, served with FastAPI in Docker, with every prediction logged to SQLite.",
+        "problem": [
+            "A hotel wants a cancellation probability for each booking, to plan overbooking and staffing. Drift monitoring is supposed to warn you when a model starts to fail. I tested whether it actually does.",
+        ],
+        "built": [
+            "Time-based split on the Hotel Booking Demand dataset (two hotels in Portugal, 2015 to 2017). Removed leaking columns that are recorded after booking, such as reservation_status and booking_changes.",
+            "Logistic regression baseline and a LightGBM model, tuned on an inner time split inside the training year, not on validation.",
+            "FastAPI service in Docker with input validation, prediction logging to SQLite, and a labels endpoint.",
+            "Monthly and weekly drift monitoring with PSI, KS, and chi-square tests.",
+            "A simulation that injects known shifts to measure each detector's detection rate and false alarm rate.",
+        ],
+        "results": [
+            "Validation ROC AUC 0.878 for LightGBM vs 0.849 for logistic regression.",
+            "Production AUC held near validation until June 2017, then fell to 0.782 in July and 0.760 in August 2017.",
+            "Every alarm rule had precision near 0.29, the share of degraded weeks. Drift scores did not predict the drop.",
+            "The share of Non Refund bookings tracked the drop (weekly Spearman -0.84). These bookings are easy to rank, so when they fell, AUC fell.",
+            "At n = 1000, a lead_time shift of SMD 0.10 was caught by KS in 58% of trials and by PSI >= 0.1 in 0%.",
+            "Single prediction latency in Docker: p50 16.5 ms, p95 23.5 ms, measured on a local build.",
+        ],
+        "lesson": "On this data, drift scores help explain a change after the fact, but they are not a reliable alarm. Watching labeled performance by segment works better.",
+        "stack": ["Python", "LightGBM", "scikit-learn", "FastAPI", "Docker", "SQLite", "GitHub Actions CI"],
+        "links": [("GitHub", "https://github.com/Kadaru242003/ml-model-monitoring")],
+    },
+    {
         "slug": "claimcheck-mcp",
         "title": "claimcheck-mcp",
         "meta": "MCP server &middot; Oct 2026",
@@ -144,6 +171,7 @@ def ul(items):
 
 
 FC_ALT = "Chart from the forecasting repo: MASE per backtest fold for LightGBM, ETS, moving average, and seasonal naive. LightGBM is lowest in every fold."
+MM_ALT = "Monthly ROC AUC from October 2016 to August 2017"
 RB_ALT = "RiskBot screen after an upload, with a table of detected sensitive data showing type, category, text snippet, and confidence."
 
 
@@ -155,6 +183,7 @@ def visual(slug):
     if slug == "ab-experimentation-framework":
         return '<figure class="detail-visual is-diagram">' + diagrams.ab_framework("dg-ab") + "</figure>"
     imgs = {
+        "ml-model-monitoring": ("/assets/projects/monitoring-auc-over-time", "-thumb", 640, 990, 418, MM_ALT),
         "demand-forecasting-backtest": ("/assets/projects/forecasting-fold-mase", "-thumb", 640, 1262, 668, FC_ALT),
         "riskbot": ("/assets/riskbot-1", "-thumb", 800, 1600, 773, RB_ALT),
     }
@@ -175,6 +204,14 @@ def page(p):
         for t, h in p["links"]
     )
     note = f'\n        <p class="note">{esc(p["note"])}</p>' if p.get("note") else ""
+    lesson = ""
+    if p.get("lesson"):
+        lesson = f"""
+      <section class="section reveal" aria-labelledby="lesson-title">
+        <h2 id="lesson-title">Lesson</h2>
+        <p>{esc(p["lesson"])}</p>
+      </section>
+"""
     shots = ""
     if p.get("shots"):
         items = "\n".join(
@@ -279,7 +316,7 @@ def page(p):
 {ul(p['results'])}
         </ul>
       </section>
-{shots}
+{lesson}{shots}
       <section class="section reveal" aria-labelledby="stack-title">
         <h2 id="stack-title">Stack</h2>
         <ul class="tags">{stack}</ul>
