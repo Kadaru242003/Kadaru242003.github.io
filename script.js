@@ -33,3 +33,54 @@
   button.hidden = false;
   render();
 })();
+
+// Click-to-enlarge screenshots. Without JavaScript the links open the image directly.
+(function () {
+  var links = document.querySelectorAll("a[data-lightbox]");
+  if (!links.length || typeof HTMLDialogElement !== "function") return;
+
+  var dialog = document.createElement("dialog");
+  dialog.className = "lightbox";
+  dialog.setAttribute("aria-label", "Enlarged screenshot");
+  var close = document.createElement("button");
+  close.type = "button";
+  close.className = "lightbox-close";
+  close.setAttribute("aria-label", "Close");
+  close.textContent = "×";
+  var img = document.createElement("img");
+  var caption = document.createElement("p");
+  dialog.appendChild(close);
+  dialog.appendChild(img);
+  dialog.appendChild(caption);
+  document.body.appendChild(dialog);
+
+  var opener = null;
+
+  close.addEventListener("click", function () {
+    dialog.close();
+  });
+
+  // Clicking the dark backdrop (outside the image) closes the dialog.
+  dialog.addEventListener("click", function (e) {
+    if (e.target === dialog) dialog.close();
+  });
+
+  dialog.addEventListener("close", function () {
+    img.removeAttribute("src");
+    if (opener) opener.focus();
+  });
+
+  Array.prototype.forEach.call(links, function (link) {
+    link.addEventListener("click", function (e) {
+      if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+      e.preventDefault();
+      var thumb = link.querySelector("img");
+      img.src = link.href;
+      img.alt = thumb ? thumb.alt : "";
+      caption.textContent = link.getAttribute("data-caption") || "";
+      opener = link;
+      dialog.showModal();
+      close.focus();
+    });
+  });
+})();
