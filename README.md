@@ -4,6 +4,8 @@ Personal portfolio of Harshith Kadaru, served at https://kadaru242003.github.io.
 
 Plain HTML, CSS, and a small script. No framework and no build step.
 
+**Editing the site by hand?** See [docs/UPDATING.md](docs/UPDATING.md) for step-by-step instructions: changing text, adding a project, images, the resume, fixing CI failures, and previewing locally.
+
 ## Files
 
 | File | Purpose |
@@ -17,6 +19,7 @@ Plain HTML, CSS, and a small script. No framework and no build step.
 | `assets/` | Headshot, GW photo, and RiskBot screenshots. `*.png` files are sources and are not deployed |
 | `scripts/dev/` | Generator for the project pages and their inline SVG diagrams |
 | `404.html`, `favicon.svg`, `og-image.png`, `robots.txt`, `sitemap.xml`, `resume.pdf` | Supporting files |
+| `docs/UPDATING.md` | How to update the site without AI help |
 | `docs/screenshots/` | Full-page screenshots for pull requests (not deployed) |
 | `lychee.toml`, `.htmlvalidate.json` | Link checker and HTML validator settings |
 | `.github/workflows/site.yml` | Checks and deployment |
