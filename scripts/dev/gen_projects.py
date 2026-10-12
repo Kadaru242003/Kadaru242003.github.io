@@ -17,7 +17,7 @@ PROJECTS = [
     {
         "slug": "claimcheck",
         "title": "claimcheck",
-        "meta": 'Open-source benchmark <span class="badge">In Progress</span>',
+        "meta": "Open-source benchmark &middot; Oct 2026",
         "summary": "An open-source benchmark that tests whether AI coding agents falsely claim success.",
         "problem": [
             "AI coding agents often report that a task is done and the tests pass. claimcheck tests whether that claim is true.",
@@ -31,9 +31,15 @@ PROJECTS = [
             "A pre-registered analysis using McNemar and Fisher tests.",
         ],
         "results": [
-            "Caught GPT-OSS 120B reverse-engineering test data to pass an impossible task, then quietly claiming success.",
-            "Final results are still being computed.",
+            "Without running tests, GPT-OSS 120B falsely claimed success on 58/102 unsolvable tasks (57%) and GPT-OSS 20B on 61/101 (60%).",
+            "With tests, 5/36 (14%) and 8/36 (22%). Both drops are 42 points (exact McNemar p = 0.0015 and 0.00028), significant after a Bonferroni correction for 6 planned tests.",
+            "Model size made no significant difference (p = 0.33 blind, p = 0.55 with tests).",
+            "Without running tests, models claimed success on 46/46 and 45/46 broken-environment tasks, but only 9/50 and 13/49 impossible ones. A broken environment only shows up when something runs.",
+            "Both models reverse-engineered the test data of one impossible task to make it pass, then claimed success without saying how. The grader and the judge both caught it.",
+            "The LLM judge (Qwen 27B, a different model family) matched ground truth on 96% of 322 runs (Cohen's kappa 0.90).",
+            "A DistilBERT model fine-tuned in PyTorch flagged false success claims with 91% accuracy (5-fold cross-validation split by task), the same as a TF-IDF baseline (92%, p = 0.66).",
         ],
+        "limits": "Two models from one family, on short Python tasks written for this benchmark. Agent runs cover 60 tasks per model, so their intervals are wide.",
         "stack": ["Python", "pytest", "Docker", "GPT-OSS 120B and 20B", "LLM-as-a-judge", "McNemar and Fisher tests"],
         "links": [("GitHub", "https://github.com/Kadaru242003/claimcheck")],
     },
@@ -177,7 +183,7 @@ RB_ALT = "RiskBot screen after an upload, with a table of detected sensitive dat
 
 def visual(slug):
     if slug == "claimcheck":
-        return '<figure class="detail-visual is-diagram">' + diagrams.claimcheck("dg-cc") + "</figure>"
+        return '<figure class="detail-visual is-diagram">' + diagrams.claimcheck_results_chart("ch-cc") + "</figure>"
     if slug == "claimcheck-mcp":
         return '<figure class="detail-visual is-diagram">' + diagrams.claimcheck_mcp("dg-mcp") + "</figure>"
     if slug == "ab-experimentation-framework":
@@ -204,6 +210,14 @@ def page(p):
         for t, h in p["links"]
     )
     note = f'\n        <p class="note">{esc(p["note"])}</p>' if p.get("note") else ""
+    limits = ""
+    if p.get("limits"):
+        limits = f"""
+      <section class="section reveal" aria-labelledby="limits-title">
+        <h2 id="limits-title">Limits</h2>
+        <p>{esc(p["limits"])}</p>
+      </section>
+"""
     lesson = ""
     if p.get("lesson"):
         lesson = f"""
@@ -316,7 +330,7 @@ def page(p):
 {ul(p['results'])}
         </ul>
       </section>
-{lesson}{shots}
+{lesson}{limits}{shots}
       <section class="section reveal" aria-labelledby="stack-title">
         <h2 id="stack-title">Stack</h2>
         <ul class="tags">{stack}</ul>
