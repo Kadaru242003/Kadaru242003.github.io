@@ -91,3 +91,57 @@ def ab_framework(prefix):
         f"Welch's t-tests, then guardrails that decide ship, continue, or rollback.</title>"
         f"{body}</svg>"
     )
+
+
+def claimcheck_results_chart(prefix):
+    """Grouped column chart: false success rate on unsolvable tasks, without vs with tests.
+
+    Values are the reported results only (57%, 14%, 60%, 22%). Every bar is labeled.
+    """
+    tid, did = f"{prefix}-title", f"{prefix}-desc"
+    data = [("GPT-OSS 120B", 57, 14), ("GPT-OSS 20B", 60, 22)]
+    left, right, top, base = 90, 620, 60, 330
+    scale = (base - top) / 100
+    bw, gap = 44, 4
+    parts = []
+    # Recessive gridlines and y tick labels
+    for v in (0, 25, 50, 75, 100):
+        y = base - v * scale
+        parts.append(f'<line class="ch-grid" x1="{left}" y1="{y:g}" x2="{right}" y2="{y:g}"/>')
+        parts.append(f'<text class="ch-tick" x="{left - 10}" y="{y + 5:g}" text-anchor="end">{v}%</text>')
+    # Bars: square at the baseline, 4px rounded at the data end
+    def bar(x, v, cls):
+        h = v * scale
+        y = base - h
+        r = 4
+        d = (f"M{x},{base} V{y + r:g} Q{x},{y:g} {x + r},{y:g} H{x + bw - r} "
+             f"Q{x + bw},{y:g} {x + bw},{y + r:g} V{base} Z")
+        return (f'<path class="{cls}" d="{d}"/>'
+                f'<text class="ch-value" x="{x + bw / 2:g}" y="{y - 10:g}" text-anchor="middle">{v}%</text>')
+    width = right - left
+    for i, (name, without, with_) in enumerate(data):
+        c = left + width * (0.25 + 0.5 * i)
+        parts.append(bar(c - bw - gap / 2, without, "ch-s1"))
+        parts.append(bar(c + gap / 2, with_, "ch-s2"))
+        parts.append(f'<text class="ch-cat" x="{c:g}" y="{base + 28}" text-anchor="middle">{name}</text>')
+    parts.append(f'<line class="ch-axis" x1="{left}" y1="{base}" x2="{right}" y2="{base}"/>')
+    # Axis titles
+    parts.append(f'<text class="ch-axis-title" x="{left + width / 2:g}" y="{base + 62}" text-anchor="middle">Model</text>')
+    parts.append(f'<text class="ch-axis-title" transform="translate(22 {(top + base) / 2:g}) rotate(-90)" '
+                 f'text-anchor="middle">False success rate, unsolvable tasks</text>')
+    # Legend
+    parts.append(f'<rect class="ch-s1" x="{left}" y="14" width="16" height="16" rx="3"/>'
+                 f'<text class="ch-legend" x="{left + 24}" y="28">Without tests</text>'
+                 f'<rect class="ch-s2" x="{left + 190}" y="14" width="16" height="16" rx="3"/>'
+                 f'<text class="ch-legend" x="{left + 214}" y="28">With tests</text>')
+    desc = ("Without tests: GPT-OSS 120B 57%, GPT-OSS 20B 60%. "
+            "With tests: GPT-OSS 120B 14%, GPT-OSS 20B 22%.")
+    svg = (f'<svg class="chart" viewBox="0 0 640 420" role="img" aria-labelledby="{tid} {did}" '
+           f'xmlns="http://www.w3.org/2000/svg">'
+           f'<title id="{tid}">False success rate on unsolvable tasks, without tests and with tests</title>'
+           f'<desc id="{did}">{desc}</desc>{"".join(parts)}</svg>')
+    table = ('<table class="visually-hidden"><caption>False success rate on unsolvable tasks</caption>'
+             '<thead><tr><th scope="col">Model</th><th scope="col">Without tests</th><th scope="col">With tests</th></tr></thead>'
+             '<tbody><tr><th scope="row">GPT-OSS 120B</th><td>57%</td><td>14%</td></tr>'
+             '<tr><th scope="row">GPT-OSS 20B</th><td>60%</td><td>22%</td></tr></tbody></table>')
+    return svg + table
