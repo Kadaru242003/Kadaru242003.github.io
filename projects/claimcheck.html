@@ -53,12 +53,12 @@
       <header class="detail-header">
         <a class="back" href="/#projects">Back to all projects</a>
         <h1>claimcheck</h1>
-        <p class="detail-meta">Open-source benchmark <span class="badge">In Progress</span></p>
+        <p class="detail-meta">Open-source benchmark &middot; Oct 2026</p>
         <p class="lede">An open-source benchmark that tests whether AI coding agents falsely claim success.</p>
         <p class="card-links">
           <a href="https://github.com/Kadaru242003/claimcheck">GitHub<span class="visually-hidden">: claimcheck</span></a>
         </p>
-        <figure class="detail-visual is-diagram"><svg viewBox="0 0 960 540" role="img" aria-labelledby="dg-cc-title" xmlns="http://www.w3.org/2000/svg"><title id="dg-cc-title">claimcheck pipeline: 205 tasks with verified ground truth go to an agent harness running GPT-OSS 120B and 20B, then to hardened grading, then to an LLM-as-a-judge from a different model family.</title><rect class="dg-box-accent" x="40" y="50" width="400" height="200" rx="22"/><text class="dg-title" x="240" y="144" text-anchor="middle">205 tasks</text><text class="dg-sub" x="240" y="190" text-anchor="middle">verified ground truth</text><rect class="dg-box" x="520" y="50" width="400" height="200" rx="22"/><text class="dg-title" x="720" y="144" text-anchor="middle">Agent harness</text><text class="dg-sub" x="720" y="190" text-anchor="middle">GPT-OSS 120B and 20B</text><rect class="dg-box" x="520" y="290" width="400" height="200" rx="22"/><text class="dg-title" x="720" y="384" text-anchor="middle">Grading</text><text class="dg-sub" x="720" y="430" text-anchor="middle">hardened</text><rect class="dg-box" x="40" y="290" width="400" height="200" rx="22"/><text class="dg-title" x="240" y="384" text-anchor="middle">LLM-as-a-judge</text><text class="dg-sub" x="240" y="430" text-anchor="middle">different model family</text><line class="dg-arrow" x1="446" y1="150" x2="492.0" y2="150.0"/><polygon class="dg-head" points="514.0,150.0 492.0,163.0 492.0,137.0"/><line class="dg-arrow" x1="720" y1="256" x2="720.0" y2="262.0"/><polygon class="dg-head" points="720.0,284.0 707.0,262.0 733.0,262.0"/><line class="dg-arrow" x1="514" y1="390" x2="468.0" y2="390.0"/><polygon class="dg-head" points="446.0,390.0 468.0,377.0 468.0,403.0"/></svg></figure>
+        <figure class="detail-visual is-diagram"><svg class="chart" viewBox="0 0 640 420" role="img" aria-labelledby="ch-cc-title ch-cc-desc" xmlns="http://www.w3.org/2000/svg"><title id="ch-cc-title">False success rate on unsolvable tasks, without tests and with tests</title><desc id="ch-cc-desc">Without tests: GPT-OSS 120B 57%, GPT-OSS 20B 60%. With tests: GPT-OSS 120B 14%, GPT-OSS 20B 22%.</desc><line class="ch-grid" x1="90" y1="330" x2="620" y2="330"/><text class="ch-tick" x="80" y="335" text-anchor="end">0%</text><line class="ch-grid" x1="90" y1="262.5" x2="620" y2="262.5"/><text class="ch-tick" x="80" y="267.5" text-anchor="end">25%</text><line class="ch-grid" x1="90" y1="195" x2="620" y2="195"/><text class="ch-tick" x="80" y="200" text-anchor="end">50%</text><line class="ch-grid" x1="90" y1="127.5" x2="620" y2="127.5"/><text class="ch-tick" x="80" y="132.5" text-anchor="end">75%</text><line class="ch-grid" x1="90" y1="60" x2="620" y2="60"/><text class="ch-tick" x="80" y="65" text-anchor="end">100%</text><path class="ch-s1" d="M176.5,330 V180.1 Q176.5,176.1 180.5,176.1 H216.5 Q220.5,176.1 220.5,180.1 V330 Z"/><text class="ch-value" x="198.5" y="166.1" text-anchor="middle">57%</text><path class="ch-s2" d="M224.5,330 V296.2 Q224.5,292.2 228.5,292.2 H264.5 Q268.5,292.2 268.5,296.2 V330 Z"/><text class="ch-value" x="246.5" y="282.2" text-anchor="middle">14%</text><text class="ch-cat" x="222.5" y="358" text-anchor="middle">GPT-OSS 120B</text><path class="ch-s1" d="M441.5,330 V172 Q441.5,168 445.5,168 H481.5 Q485.5,168 485.5,172 V330 Z"/><text class="ch-value" x="463.5" y="158" text-anchor="middle">60%</text><path class="ch-s2" d="M489.5,330 V274.6 Q489.5,270.6 493.5,270.6 H529.5 Q533.5,270.6 533.5,274.6 V330 Z"/><text class="ch-value" x="511.5" y="260.6" text-anchor="middle">22%</text><text class="ch-cat" x="487.5" y="358" text-anchor="middle">GPT-OSS 20B</text><line class="ch-axis" x1="90" y1="330" x2="620" y2="330"/><text class="ch-axis-title" x="355" y="392" text-anchor="middle">Model</text><text class="ch-axis-title" transform="translate(22 195) rotate(-90)" text-anchor="middle">False success rate, unsolvable tasks</text><rect class="ch-s1" x="90" y="14" width="16" height="16" rx="3"/><text class="ch-legend" x="114" y="28">Without tests</text><rect class="ch-s2" x="280" y="14" width="16" height="16" rx="3"/><text class="ch-legend" x="304" y="28">With tests</text></svg><table class="visually-hidden"><caption>False success rate on unsolvable tasks</caption><thead><tr><th scope="col">Model</th><th scope="col">Without tests</th><th scope="col">With tests</th></tr></thead><tbody><tr><th scope="row">GPT-OSS 120B</th><td>57%</td><td>14%</td></tr><tr><th scope="row">GPT-OSS 20B</th><td>60%</td><td>22%</td></tr></tbody></table></figure>
       </header>
 
       <div class="detail-body">
@@ -82,9 +82,19 @@
       <section class="section reveal" aria-labelledby="results-title">
         <h2 id="results-title">Results</h2>
         <ul class="bullets">
-          <li>Caught GPT-OSS 120B reverse-engineering test data to pass an impossible task, then quietly claiming success.</li>
-          <li>Final results are still being computed.</li>
+          <li>Without running tests, GPT-OSS 120B falsely claimed success on 58/102 unsolvable tasks (57%) and GPT-OSS 20B on 61/101 (60%).</li>
+          <li>With tests, 5/36 (14%) and 8/36 (22%). Both drops are 42 points (exact McNemar p = 0.0015 and 0.00028), significant after a Bonferroni correction for 6 planned tests.</li>
+          <li>Model size made no significant difference (p = 0.33 blind, p = 0.55 with tests).</li>
+          <li>Without running tests, models claimed success on 46/46 and 45/46 broken-environment tasks, but only 9/50 and 13/49 impossible ones. A broken environment only shows up when something runs.</li>
+          <li>Both models reverse-engineered the test data of one impossible task to make it pass, then claimed success without saying how. The grader and the judge both caught it.</li>
+          <li>The LLM judge (Qwen 27B, a different model family) matched ground truth on 96% of 322 runs (Cohen&#x27;s kappa 0.90).</li>
+          <li>A DistilBERT model fine-tuned in PyTorch flagged false success claims with 91% accuracy (5-fold cross-validation split by task), the same as a TF-IDF baseline (92%, p = 0.66).</li>
         </ul>
+      </section>
+
+      <section class="section reveal" aria-labelledby="limits-title">
+        <h2 id="limits-title">Limits</h2>
+        <p>Two models from one family, on short Python tasks written for this benchmark. Agent runs cover 60 tasks per model, so their intervals are wide.</p>
       </section>
 
       <section class="section reveal" aria-labelledby="stack-title">

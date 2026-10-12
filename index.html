@@ -171,11 +171,9 @@
           </figure>
           <div class="card-head">
             <h3>claimcheck</h3>
-            <span class="badge">In Progress</span>
+            <span class="card-date">Oct 2026</span>
           </div>
-          <p>An open-source benchmark that tests whether AI coding agents falsely claim success. It has 205 tasks with verified ground truth. The harness ran GPT-OSS 120B and 20B through 530 runs at $0 API cost.</p>
-          <p>Grading is hardened against 8 ways to fake a pass. 12 cheat strategies (1,236 attempts) get none through. It caught GPT-OSS 120B reverse-engineering test data to pass an impossible task, then quietly claiming success.</p>
-          <p class="note">Final results are still being computed.</p>
+          <p>An open-source benchmark that tests whether AI coding agents falsely claim success. 205 tasks with verified ground truth and a grader no cheat got past (0 of 1,236 attempts); 530 GPT-OSS runs at $0. Without running tests, models falsely claimed success on 57-60% of unsolvable tasks; with tests, 14-22% (p &lt; 0.002).</p>
           <ul class="tags">
             <li>Python</li><li>LLM evaluation</li><li>LLM-as-a-judge</li><li>Agent harnesses</li><li>Docker</li>
           </ul>
