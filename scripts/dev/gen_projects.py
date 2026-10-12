@@ -145,13 +145,20 @@ PROJECTS = [
             "Shared files can hold sensitive HR data, such as salaries and performance reviews, and personal data, such as Social Security and bank account numbers. RiskBot finds it.",
         ],
         "built": [
-            "Flags sensitive HR and personal data across whole files.",
-            "Document Q&A using top-k retrieval in ChromaDB.",
-            "A web UI for uploading files, reviewing findings, and asking questions.",
+            "Hybrid detection: checksum rules for SSNs, card numbers (Luhn) and routing numbers (ABA), and GPT-OSS 120B for HR data.",
+            "Grounding: LLM findings whose snippet is not in the file are dropped and counted.",
+            "Masked values in every answer, automatic deletion after 24 hours, upload limits, and no sensitive data in logs.",
+            "Document Q&A using top-k retrieval in ChromaDB, with category questions answered from the stored findings.",
+            "A labeled synthetic benchmark of 48 documents, with labels written before any detector and a held-out half never tuned on.",
         ],
         "results": [
+            "On the 24 held-out documents (131 labels), the hybrid scored F1 0.97 (precision 0.95, recall 0.99).",
+            "The LLM alone scored F1 0.98 and the rules alone 0.74; the rules cover structured NPPI only, not HR data.",
             "Cut peak memory from over 650 MB to 287 MB by swapping PyTorch for an ONNX embedder, to fit a 512 MB free tier.",
+            "Over 200 tests in CI, including browser tests that render malicious answers harmlessly.",
         ],
+        "lesson": "Here the rules added consistency, not accuracy. The LLM's findings varied between runs on the same file, while the rules find structured NPPI the same way every time.",
+        "limits": "The benchmark is synthetic and template-generated, so its scores overstate real-world accuracy. The LLM was measured once per document.",
         "stack": ["Python", "FastAPI", "RAG", "ChromaDB", "Embeddings", "ONNX"],
         "links": [
             ("GitHub", "https://github.com/Kadaru242003/HRCI-NPPI-doc-finder"),
