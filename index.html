@@ -277,7 +277,7 @@
             <h3>RiskBot</h3>
             <span class="card-date">Dec 2025</span>
           </div>
-          <p>Flags sensitive HR and personal data across whole files, with document Q&amp;A using top-k retrieval in ChromaDB. I cut peak memory from over 650 MB to 287 MB by swapping PyTorch for an ONNX embedder, so it fits a 512 MB free tier.</p>
+          <p>Flags sensitive HR and personal data with checksum rules and GPT-OSS 120B, with document Q&amp;A using top-k retrieval in ChromaDB. On a held-out synthetic benchmark it scored F1 0.97. Values are masked, files auto-delete, and it fits a 512 MB free tier.</p>
           <ul class="tags">
             <li>Python</li><li>FastAPI</li><li>RAG</li><li>ChromaDB</li><li>Embeddings</li>
           </ul>

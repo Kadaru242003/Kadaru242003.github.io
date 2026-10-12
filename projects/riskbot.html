@@ -72,17 +72,32 @@
       <section class="section reveal" aria-labelledby="built-title">
         <h2 id="built-title">What I built</h2>
         <ul class="bullets">
-          <li>Flags sensitive HR and personal data across whole files.</li>
-          <li>Document Q&amp;A using top-k retrieval in ChromaDB.</li>
-          <li>A web UI for uploading files, reviewing findings, and asking questions.</li>
+          <li>Hybrid detection: checksum rules for SSNs, card numbers (Luhn) and routing numbers (ABA), and GPT-OSS 120B for HR data.</li>
+          <li>Grounding: LLM findings whose snippet is not in the file are dropped and counted.</li>
+          <li>Masked values in every answer, automatic deletion after 24 hours, upload limits, and no sensitive data in logs.</li>
+          <li>Document Q&amp;A using top-k retrieval in ChromaDB, with category questions answered from the stored findings.</li>
+          <li>A labeled synthetic benchmark of 48 documents, with labels written before any detector and a held-out half never tuned on.</li>
         </ul>
       </section>
 
       <section class="section reveal" aria-labelledby="results-title">
         <h2 id="results-title">Results</h2>
         <ul class="bullets">
+          <li>On the 24 held-out documents (131 labels), the hybrid scored F1 0.97 (precision 0.95, recall 0.99).</li>
+          <li>The LLM alone scored F1 0.98 and the rules alone 0.74; the rules cover structured NPPI only, not HR data.</li>
           <li>Cut peak memory from over 650 MB to 287 MB by swapping PyTorch for an ONNX embedder, to fit a 512 MB free tier.</li>
+          <li>Over 200 tests in CI, including browser tests that render malicious answers harmlessly.</li>
         </ul>
+      </section>
+
+      <section class="section reveal" aria-labelledby="lesson-title">
+        <h2 id="lesson-title">Lesson</h2>
+        <p>Here the rules added consistency, not accuracy. The LLM&#x27;s findings varied between runs on the same file, while the rules find structured NPPI the same way every time.</p>
+      </section>
+
+      <section class="section reveal" aria-labelledby="limits-title">
+        <h2 id="limits-title">Limits</h2>
+        <p>The benchmark is synthetic and template-generated, so its scores overstate real-world accuracy. The LLM was measured once per document.</p>
       </section>
 
       <section class="section reveal" aria-labelledby="shots-title">
