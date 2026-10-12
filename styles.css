@@ -1078,3 +1078,62 @@ img {
 .hero h1 {
   margin-bottom: var(--space-4);
 }
+
+/* Results chart (inline SVG). Series colors validated for both themes. */
+:root {
+  --series-1: #2a78d6;
+  --series-2: #eb6834;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --series-1: #3987e5;
+    --series-2: #d95926;
+  }
+}
+
+:root[data-theme="dark"] {
+  --series-1: #3987e5;
+  --series-2: #d95926;
+}
+
+.detail-visual.is-diagram svg.chart {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.ch-s1 { fill: var(--series-1); }
+.ch-s2 { fill: var(--series-2); }
+
+.ch-grid {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+
+.ch-axis {
+  stroke: var(--border-strong);
+  stroke-width: 1.5;
+}
+
+.chart text {
+  font-family: var(--font-body);
+}
+
+.ch-tick,
+.ch-axis-title {
+  fill: var(--muted);
+  font-size: 17px;
+}
+
+.ch-cat,
+.ch-legend {
+  fill: var(--text);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.ch-value {
+  fill: var(--text);
+  font-size: 22px;
+  font-weight: 600;
+}
