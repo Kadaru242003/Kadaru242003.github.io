@@ -46,6 +46,39 @@ PROJECTS = [
         "links": [("GitHub", "https://github.com/Kadaru242003/riskcheck")],
     },
     {
+        "slug": "protostar-climate",
+        "title": "ProtoStar Climate Forecasting",
+        "meta": "2nd Place, CMU x Hugging Face ProtoStar Challenge &middot; Nov 2026",
+        "summary": "Forecasts of 4 yearly climate measures for 210 US cities, built to be rebuilt byte for byte with one command, and joined to CDC health data to show where cooling demand is rising fastest.",
+        "problem": [
+            "The ProtoStar Climate Risk Intelligence Challenge, run by the CMU Open Source Programs Office with Hugging Face, asked teams to forecast 4 yearly measures for 210 US cities for 2019 to 2025, using only data through 2018: average temperature, total precipitation, hottest day, and cooling degree days.",
+            "Forecasts were scored against a 30-year-average baseline. I competed with team Ashley Boys from GW and wrote all the code.",
+        ],
+        "built": [
+            "A deliberately simple model. Temperature is the mean of the last 15 valid years plus a warming trend. Cooling degree days blend that trend recipe with a day-by-day method that shifts each day's temperature and recounts degrees above 65 F. Precipitation and hottest day use the 30-year mean.",
+            "A search over about 70 alternatives, including the FaIR climate model, regional and robust trend methods, station-change adjustments, and longer windows, under rules set before running, with nested selection and a city bootstrap.",
+            "A leakage test: forecasts do not change when post-cutoff data is corrupted.",
+            "A one-command pipeline with pinned packages and a pinned data version. bash code/run_all.sh rebuilds everything byte for byte in about 2.5 minutes.",
+            "5 published tables with validated Croissant metadata, the full model-search record, and audit notes.",
+            "A join of the forecasts to CDC PLACES health data for census tracts within 25 km of each city, and the public Cooling Risk Explorer app on Hugging Face Spaces.",
+        ],
+        "results": [
+            "2nd place overall, 1 of 5 finalists from 24 teams, and the only finalist from outside CMU. The team was recognized for open-science contributions.",
+            "On held-out years (train to 2011, score 2012 to 2018), temperature error fell about 20% and cooling-degree-day error about 24% vs the 30-year baseline.",
+            "None of the 70 or so alternatives reliably beat the simple model, so I kept it and published the search.",
+            "Rebuilt 28,052 city-years from daily data with 0 mismatches. An audit by a separate AI agent, run by our team as a cross-check, matched all 5,880 forecasts.",
+            "Found data-quality issues in the shared dataset: city-years short of days still counted as complete (409 for precipitation, 729 for cooling degree days), about 72 weather-station changes (30 shifting readings by 1 F or more), and two different missing-day rules. The organizers fixed several and credited the team.",
+            "Of the 207 cities with at least 100 baseline cooling degree days, 31 are forecast to rise 25% or more, covering about 12.1M people. Seattle rises about 55%.",
+        ],
+        "limits": "The 1.5x trend multiplier was chosen after seeing the 2012 to 2018 validation years. On the official leaderboard the forecast placed 8th of 24 (score 17.5); the judges' recognition was for the open-science work, not the strongest forecast.",
+        "stack": ["Python", "bash", "Hugging Face Datasets", "Hugging Face Spaces", "Croissant metadata", "CDC PLACES"],
+        "links": [
+            ("Dataset", "https://huggingface.co/datasets/ashley-boys/protostar-climate-ashley-boys"),
+            ("Cooling Risk Explorer", "https://huggingface.co/spaces/ashley-boys/cooling-risk-explorer"),
+            ("Challenge results", "https://huggingface.co/spaces/CMU-OSPO/protostar-challenge-climate-risk-intelligence"),
+        ],
+    },
+    {
         "slug": "claimcheck",
         "title": "claimcheck",
         "meta": "Open-source benchmark &middot; Oct 2026",
@@ -224,6 +257,8 @@ def visual(slug):
         return '<figure class="detail-visual is-diagram">' + diagrams.claimcheck_results_chart("ch-cc") + "</figure>"
     if slug == "riskcheck":
         return '<figure class="detail-visual is-diagram">' + diagrams.riskcheck("dg-rc") + "</figure>"
+    if slug == "protostar-climate":
+        return '<figure class="detail-visual is-diagram">' + diagrams.protostar("dg-ps") + "</figure>"
     if slug == "claimcheck-mcp":
         return '<figure class="detail-visual is-diagram">' + diagrams.claimcheck_mcp("dg-mcp") + "</figure>"
     if slug == "ab-experimentation-framework":

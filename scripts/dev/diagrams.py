@@ -80,6 +80,26 @@ def riskcheck(prefix):
     )
 
 
+def protostar(prefix):
+    tid = f"{prefix}-title"
+    body = "".join([
+        _box(40, 50, 400, 200, "Daily weather", "210 cities, through 2018", accent=True),
+        _box(520, 50, 400, 200, "Forecasts", "4 measures, 2019 to 2025"),
+        _box(520, 290, 400, 200, "CDC health data", "about 130.6M people"),
+        _box(40, 290, 400, 200, "Public app", "Cooling Risk Explorer"),
+        _arrow(446, 150, 514, 150),
+        _arrow(720, 256, 720, 284),
+        _arrow(514, 390, 446, 390),
+    ])
+    return (
+        f'<svg viewBox="0 0 960 540" role="img" aria-labelledby="{tid}" xmlns="http://www.w3.org/2000/svg">'
+        f'<title id="{tid}">ProtoStar: daily weather data for 210 US cities through 2018 feeds forecasts of 4 yearly '
+        f"measures for 2019 to 2025, which are joined to CDC health data covering about 130.6M people and shown in "
+        f"the public Cooling Risk Explorer app.</title>"
+        f"{body}</svg>"
+    )
+
+
 def _box_lines(x, y, w, h, lines, accent=False):
     """Box with one or more title-style lines, vertically centred."""
     cls = "dg-box-accent" if accent else "dg-box"
