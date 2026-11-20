@@ -158,7 +158,7 @@ PROJECTS = [
     {
         "slug": "ab-experimentation-framework",
         "title": "A/B Experimentation and Decision Framework",
-        "meta": "Experimentation framework",
+        "meta": "Experimentation framework &middot; Jan 2026, updated Oct 2026",
         "summary": "A framework that turns A/B test data into ship, continue, or rollback decisions.",
         "problem": [
             "A low p-value alone is a weak reason to ship a change. A broken traffic split, a lift too small to matter, a guardrail that got worse, or peeking at results early can all mislead a team.",
