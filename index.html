@@ -169,6 +169,24 @@
       <ul class="cards">
         <li class="card">
           <figure class="card-visual is-diagram">
+            <svg viewBox="0 0 960 540" role="img" aria-labelledby="dg-rc-card-title" xmlns="http://www.w3.org/2000/svg"><title id="dg-rc-card-title">RiskCheck: a risk engine with 4 models is backtested on 5 portfolios over 4,529 trading days, and exposed through an MCP server with 4 tools to LLM copilots answering 1,200 questions.</title><rect class="dg-box-accent" x="40" y="50" width="400" height="200" rx="22"/><text class="dg-title" x="240" y="144" text-anchor="middle">Risk engine</text><text class="dg-sub" x="240" y="190" text-anchor="middle">4 models</text><rect class="dg-box" x="520" y="50" width="400" height="200" rx="22"/><text class="dg-title" x="720" y="144" text-anchor="middle">Backtests</text><text class="dg-sub" x="720" y="190" text-anchor="middle">5 portfolios, 4,529 days</text><rect class="dg-box" x="40" y="290" width="400" height="200" rx="22"/><text class="dg-title" x="240" y="384" text-anchor="middle">MCP server</text><text class="dg-sub" x="240" y="430" text-anchor="middle">4 tools</text><rect class="dg-box" x="520" y="290" width="400" height="200" rx="22"/><text class="dg-title" x="720" y="384" text-anchor="middle">LLM copilots</text><text class="dg-sub" x="720" y="430" text-anchor="middle">1,200 answers</text><line class="dg-arrow" x1="446" y1="150" x2="492.0" y2="150.0"/><polygon class="dg-head" points="514.0,150.0 492.0,163.0 492.0,137.0"/><line class="dg-arrow" x1="240" y1="256" x2="240.0" y2="262.0"/><polygon class="dg-head" points="240.0,284.0 227.0,262.0 253.0,262.0"/><line class="dg-arrow" x1="446" y1="390" x2="492.0" y2="390.0"/><polygon class="dg-head" points="514.0,390.0 492.0,403.0 492.0,377.0"/></svg>
+          </figure>
+          <div class="card-head">
+            <h3>RiskCheck</h3>
+            <span class="card-date">Oct 2026</span>
+          </div>
+          <p>A portfolio risk engine (historical, EWMA, GARCH-t, 8-factor) backtested on 5 ETF portfolios over 4,529 trading days. All 4 models underestimated 99% tail risk; a split-conformal correction raised coverage from 97.9% to 99.0%. A pre-registered study of 3 LLM copilots (1,200 answers) found MCP tool access raised accuracy from 27.5% to 96%, but did not reduce wrong numbers, so I reported the null result.</p>
+          <ul class="tags">
+            <li>Python</li><li>GARCH</li><li>statsmodels</li><li>MCP servers</li><li>LLM evaluation</li>
+          </ul>
+          <p class="card-links">
+            <a href="/projects/riskcheck.html">Details<span class="visually-hidden">: RiskCheck</span></a>
+            <a href="https://github.com/Kadaru242003/riskcheck">GitHub<span class="visually-hidden">: RiskCheck</span></a>
+          </p>
+        </li>
+
+        <li class="card">
+          <figure class="card-visual is-diagram">
             <svg viewBox="0 0 960 540" role="img" aria-labelledby="dg-cc-card-title" xmlns="http://www.w3.org/2000/svg"><title id="dg-cc-card-title">claimcheck pipeline: 205 tasks with verified ground truth go to an agent harness running GPT-OSS 120B and 20B, then to hardened grading, then to an LLM-as-a-judge from a different model family.</title><rect class="dg-box-accent" x="40" y="50" width="400" height="200" rx="22"/><text class="dg-title" x="240" y="144" text-anchor="middle">205 tasks</text><text class="dg-sub" x="240" y="190" text-anchor="middle">verified ground truth</text><rect class="dg-box" x="520" y="50" width="400" height="200" rx="22"/><text class="dg-title" x="720" y="144" text-anchor="middle">Agent harness</text><text class="dg-sub" x="720" y="190" text-anchor="middle">GPT-OSS 120B and 20B</text><rect class="dg-box" x="520" y="290" width="400" height="200" rx="22"/><text class="dg-title" x="720" y="384" text-anchor="middle">Grading</text><text class="dg-sub" x="720" y="430" text-anchor="middle">hardened</text><rect class="dg-box" x="40" y="290" width="400" height="200" rx="22"/><text class="dg-title" x="240" y="384" text-anchor="middle">LLM-as-a-judge</text><text class="dg-sub" x="240" y="430" text-anchor="middle">different model family</text><line class="dg-arrow" x1="446" y1="150" x2="492.0" y2="150.0"/><polygon class="dg-head" points="514.0,150.0 492.0,163.0 492.0,137.0"/><line class="dg-arrow" x1="720" y1="256" x2="720.0" y2="262.0"/><polygon class="dg-head" points="720.0,284.0 707.0,262.0 733.0,262.0"/><line class="dg-arrow" x1="514" y1="390" x2="468.0" y2="390.0"/><polygon class="dg-head" points="446.0,390.0 468.0,377.0 468.0,403.0"/></svg>
           </figure>
           <div class="card-head">

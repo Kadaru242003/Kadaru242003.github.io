@@ -15,6 +15,37 @@ ICON_SUN = '<svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24" width="
 
 PROJECTS = [
     {
+        "slug": "riskcheck",
+        "title": "RiskCheck",
+        "meta": "Portfolio risk engine and AI copilot study &middot; Oct 2026",
+        "summary": "A portfolio risk engine with 4 models, backtested over 17 years, plus a pre-registered study of whether LLM copilots give wrong numbers about risk.",
+        "problem": [
+            "Value at Risk (VaR) and Expected Shortfall (ES) models are supposed to say how much a portfolio can lose on a bad day. I tested how often they are wrong in the tail.",
+            "Teams also want LLM copilots that answer risk questions. I tested whether giving the models tool access to the engine stops them from stating wrong numbers.",
+        ],
+        "built": [
+            "4 risk models: historical simulation, EWMA, GARCH-t, and an 8-factor model with risk attribution.",
+            "1-day VaR and ES for 5 ETF portfolios over 4,529 trading days (2008 to 2025), with no-lookahead tests for every model. 106 tests in total.",
+            "A comparison of drift detectors on 9 regime starts.",
+            "An MCP server that exposes the engine to agents as 4 tools.",
+            "A pre-registered copilot study, with the plan committed before any runs: 200 questions (50 lookup, 50 comparison, 50 attribution, 50 unanswerable) x 3 open models x with and without tools = 1,200 answers at temperature 0, with every prompt and tool call logged.",
+        ],
+        "results": [
+            "All 4 models underestimated 99% tail risk: 1.5% to 2.1% breaches vs the 1% target.",
+            "A split-conformal correction raised 99% coverage from 97.9% to 99.0% and cut Kupiec rejections from 18 of 20 portfolio-model pairs to 0.",
+            "In March to April 2020, GARCH-t breached on 3.3% of days vs 11.2% for historical simulation.",
+            "CUSUM caught 82% of regime starts on the shock day at about 1 false alarm per calm year, but no detector beat a simple VIX threshold.",
+            "With tools, pooled accuracy rose from 27.5% to 96%, and the gain was significant for all 3 models (p < 0.001).",
+            "The primary hypothesis was not supported. Without tools, the models declined about 93% of questions and stated 0 wrong numbers. With tools, the wrong-number rate was 1%, 0%, and 1% (corrected p = 1.0). I reported the null result.",
+            "Correct declines fell from 100% to 98% with tools. The misses answered with nearby data, such as a weekend date's VaR or a 10-day VaR the engine does not compute.",
+            "Cross-family LLM judges matched 120 of my blind labels 100% of the time (kappa 1.0).",
+        ],
+        "lesson": "Tools fixed refusal, not fabrication. The remaining risk is a model answering with nearby data when it should decline.",
+        "limits": "The unanswerable questions turned out to be easy, so the judges were not tested hard on those. 3 open models, one engine, and one question set.",
+        "stack": ["Python", "pandas", "statsmodels", "GARCH", "MCP", "Groq API", "McNemar tests"],
+        "links": [("GitHub", "https://github.com/Kadaru242003/riskcheck")],
+    },
+    {
         "slug": "claimcheck",
         "title": "claimcheck",
         "meta": "Open-source benchmark &middot; Oct 2026",
@@ -191,6 +222,8 @@ RB_ALT = "RiskBot screen after an upload, with a table of detected sensitive dat
 def visual(slug):
     if slug == "claimcheck":
         return '<figure class="detail-visual is-diagram">' + diagrams.claimcheck_results_chart("ch-cc") + "</figure>"
+    if slug == "riskcheck":
+        return '<figure class="detail-visual is-diagram">' + diagrams.riskcheck("dg-rc") + "</figure>"
     if slug == "claimcheck-mcp":
         return '<figure class="detail-visual is-diagram">' + diagrams.claimcheck_mcp("dg-mcp") + "</figure>"
     if slug == "ab-experimentation-framework":

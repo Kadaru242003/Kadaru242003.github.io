@@ -61,6 +61,25 @@ def claimcheck_mcp(prefix):
     )
 
 
+def riskcheck(prefix):
+    tid = f"{prefix}-title"
+    body = "".join([
+        _box(40, 50, 400, 200, "Risk engine", "4 models", accent=True),
+        _box(520, 50, 400, 200, "Backtests", "5 portfolios, 4,529 days"),
+        _box(40, 290, 400, 200, "MCP server", "4 tools"),
+        _box(520, 290, 400, 200, "LLM copilots", "1,200 answers"),
+        _arrow(446, 150, 514, 150),
+        _arrow(240, 256, 240, 284),
+        _arrow(446, 390, 514, 390),
+    ])
+    return (
+        f'<svg viewBox="0 0 960 540" role="img" aria-labelledby="{tid}" xmlns="http://www.w3.org/2000/svg">'
+        f'<title id="{tid}">RiskCheck: a risk engine with 4 models is backtested on 5 portfolios over 4,529 trading days, '
+        f"and exposed through an MCP server with 4 tools to LLM copilots answering 1,200 questions.</title>"
+        f"{body}</svg>"
+    )
+
+
 def _box_lines(x, y, w, h, lines, accent=False):
     """Box with one or more title-style lines, vertically centred."""
     cls = "dg-box-accent" if accent else "dg-box"
